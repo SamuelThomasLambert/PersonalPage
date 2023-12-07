@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<title>Games</title>
+  <script src="../js/script.js" defer></script>
+</head>
+
+<body>
+		<header class="navigation"><a href="../index.html"><span class="homeButton"></span></a> &gt; <a href="games.html">Games</a></header>
+	<main>
+		<h1>Games</h1>
+		<div class="navigation colorSection"><a href="games/fortunatelyUnfortunately.html">Fortunately - Unfortunately</a></div>	
+		<div class="navigation colorSection"><a href="games/advertisementBattle.html">Advertisement Battle</a></div>		
+		<div class="navigation colorSection"><a href="games/rowAndColumn.html">Row and Column</a></div>		
+		<div class="navigation colorSection"><a href="games/pictureGuessingGame.html">Picture Guessing Game</a></div>		
+		<div class="navigation colorSection"><a href="games/roleplayNarration.html">Roleplay Narration</a></div>
+		<div class="navigation colorSection"><a href="games/taboo.html">Taboo</a></div>
+		<div class="navigation colorSection"><a href="games/questionVoting.html">Question Voting</a></div>
+
+	</main> 
+	<footer class="navigation"> 
+		<a href="../pages/contact.html">Contact</a> <a href="../pages/about.html">About</a>
+	</footer>
+</body>
+
+</html>
