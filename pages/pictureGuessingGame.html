@@ -17,7 +17,7 @@
 
     .search-result {
   border: solid 5px black;
-  width: 33.33%;
+/*  width: 33.33%; */
   float: left;
   text-align: center;
 }
@@ -38,11 +38,9 @@
 
 .instructionBox {
     float: left;
-    Width: 50%;
 }
 .timer {
     float: right;
-    width: 30%;
 }
 #search-results {
     clear: both;
@@ -55,8 +53,8 @@
 </style>
 <body>
 
-    <header class="navigation"><a href="../../index.html"><span class="homeButton"></span></a> &gt; <a
-            href="../games.html">Games</a> &gt; <a href="pictureGuessingGame.html">Picture Guessing Game</a></header>
+    <header class="navigation"><a href="../index.html"><span class="homeButton"></span></a> &gt; <a
+            href="games.html">Games</a> &gt; <a href="pictureGuessingGame.html">Picture Guessing Game</a></header>
     <main>
 <section id="slide1" class="slide">
         <h1>Image Guesser Q and A</h1>
@@ -93,15 +91,16 @@
         <!-- Step 3: Display Image Search Results -->
         <h2>Step 3: Pictures</h2>
     <div class="timerAndInstruction">
-        <div class="instructionBox">
+        <div class="instructionBox col-sm-12 col-md-6 col-lg-6">
             <ul>
                 <li>Show the screen to all players</li>
                 <li>Players to ask questions about the images to guess which is the origional image before the time runs out</li>
                 <li>Click each image to toggle size</li>
                 <li>Click 'guess' to see if the image is the origional</li>
+                <li><b>Advanced:</b> No questions about appearance or content. instead you can ask something like 'What's a memory you associate with this picture?'</li>
             </ul>
         </div>
-        <div class="timer">    
+        <div class="timer col-sm-12 col-md-6 col-lg-6">    
 
                 <p>Time remaining.</p>
                 <div id="timer">02:00</div>
@@ -263,7 +262,7 @@
 
                 results.forEach((result) => {
                     const resultContainer = document.createElement('div'); // Container for each result
-                    resultContainer.classList.add('search-result');
+                    resultContainer.classList.add('search-result', 'col-sm-12', 'col-md-4', 'col-lg-4');
 
                     const image = document.createElement('img');
                     const guessButton = document.createElement('button'); // Add Guess button
