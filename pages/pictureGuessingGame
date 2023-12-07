@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Games</title>
+    <script src="../js/script.js" defer></script>
+</head>
+<style type="text/css">
+
+            .slide {
+            display: none;
+        }
+
+    .search-result {
+  border: solid 5px black;
+  width: 33.33%;
+  float: left;
+  text-align: center;
+}
+
+.search-result.large {
+     width: 100%;  
+}
+
+#description {
+    font-size: 2em;
+}
+
+
+#image-container {
+    width: 100%;
+    float: left;
+}
+
+.instructionBox {
+    float: left;
+    Width: 50%;
+}
+.timer {
+    float: right;
+    width: 30%;
+}
+#search-results {
+    clear: both;
+    margin-top: 100px;
+}
+.timerAndInstruction {
+    width: 100%;
+    clear: both;
+}
+</style>
+<body>
+
+    <header class="navigation"><a href="../../index.html"><span class="homeButton"></span></a> &gt; <a
+            href="../games.html">Games</a> &gt; <a href="pictureGuessingGame.html">Picture Guessing Game</a></header>
+    <main>
+<section id="slide1" class="slide">
+        <h1>Image Guesser Q and A</h1>
+
+        <!-- Step 1: Generate Random Image -->
+        <p>Players take in turns to use the device</p>
+        <ol>
+            <li>Keep the screen hidden from other players</li>
+            <li>Click the 'Get picture' Button</li>
+        </ol>
+        <button id="generate-image" onclick="showSlide(1)">Get picture</button>
+</section>
+<section id="slide2" class="slide">
+        <div id="image-container">
+            <img id="random-image" src="" alt="Random Image" height="500">
+        </div>
+        <div class="descriptionBox">
+            <!-- Step 2: Textbox for Student Description -->
+            <p> Step 2: Image description</p>
+            <ol>
+                <li>Try to remember your image!</li>
+                <li>Step 2: Type a short description of your image.</li>
+                <li>Set the timer (opitional)</li>
+                <li>Press 'Go'</li>
+            </ol>
+            <textarea id="description" rows="4" cols="50" placeholder="Enter a description..."></textarea>
+            <p>Set time limit</p>
+            <input type="number" id="minutesInput" placeholder="Set minutes" value="2">
+            <input type="number" id="secondsInput" placeholder="Set seconds" value="0">
+        </div>
+                <button id="go-button" onclick="showSlide(1)">Go</button>   
+</section>
+<section id="slide3" class="slide">
+        <!-- Step 3: Display Image Search Results -->
+        <h2>Step 3: Pictures</h2>
+    <div class="timerAndInstruction">
+        <div class="instructionBox">
+            <ul>
+                <li>Show the screen to all players</li>
+                <li>Players to ask questions about the images to guess which is the origional image before the time runs out</li>
+                <li>Click each image to toggle size</li>
+                <li>Click 'guess' to see if the image is the origional</li>
+            </ul>
+        </div>
+        <div class="timer">    
+
+                <p>Time remaining.</p>
+                <div id="timer">02:00</div>
+                <button onclick="stopTimer()">Stop</button>
+                <p>To start a new game, press the "Get picture" button.</p>
+        </div>
+    </div>
+        <div id="search-results" style="display: none;">
+            <!-- Results will be populated here -->
+        </div>
+        <!-- timer input and display -->
+
+    <button id="restart-button" onclick="showSlide(-currentSlide + 1)">Restart</button>  
+</section>
+        <script>
+    // JavaScript for showing slides...
+    let currentSlide = 1;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(step) {
+        slides[currentSlide - 1].style.display = 'none';
+        currentSlide += step;
+
+        if (currentSlide < 1) {
+            currentSlide = slides.length;
+        } else if (currentSlide > slides.length) {
+            currentSlide = 1;
+        }
+
+        slides[currentSlide - 1].style.display = 'block';
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        showSlide(0); // Show the first slide initially
+    });
+
+
+// script for game
+
+            const generateImageButton = document.getElementById('generate-image');
+            const imageContainer = document.getElementById('image-container');
+            const randomImage = document.getElementById('random-image');
+            const descriptionInput = document.getElementById('description');
+            const searchResults = document.getElementById('search-results');
+            const goButton = document.getElementById('go-button');
+            let timer;
+            let totalSeconds = 120;
+
+
+            generateImageButton.addEventListener('click', () => {
+                fetchRandomImage();
+            });
+
+            goButton.addEventListener('click', () => {
+                const description = descriptionInput.value;
+                searchImages(description);
+                startTimer();
+                // Hide the image container when "Go" is clicked
+/*                imageContainer.style.display = 'none'; */
+                descriptionInput.value = ''; // Clear the text input field
+            });
+
+
+            async function fetchRandomImage() {
+                // Replace 'YOUR_UNSPLASH_ACCESS_KEY' with your actual Unsplash API access key
+                const accessKey = 'gX1Zu7v4h-1UcH6Nj3_mSA6Vafw7nhTNa77Sczx8z_A';
+                const apiUrl = `https://api.unsplash.com/photos/random?client_id=${accessKey}`;
+
+                try {
+                    const response = await fetch(apiUrl);
+                    if (response.ok) {
+                        const data = await response.json();
+                        randomImage.src = data.urls.regular;
+                        randomImage.classList.add('clickable-image'); // Make the random image clickable
+                        imageContainer.style.display = 'block';
+                    } else {
+                        console.error('Failed to fetch random image');
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+            async function searchImages(searchTerm) {
+                // Replace 'YOUR_UNSPLASH_ACCESS_KEY' with your actual Unsplash API access key
+                const accessKey = 'aQeoppHCbNv9bUWofMU1UJzjFVHCvAQFxChAnA2sHl0';
+                const apiUrl = `https://api.unsplash.com/search/photos?query=${searchTerm}&client_id=${accessKey}&per_page=5`;
+
+                try {
+                    const response = await fetch(apiUrl);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const results = data.results;
+                        displaySearchResults(results);
+                        searchResults.style.display = 'block';
+                    } else {
+                        console.error('Failed to fetch search results');
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+            function startTimer() {
+                const minutesInput = parseInt(document.getElementById('minutesInput').value);
+                const secondsInput = parseInt(document.getElementById('secondsInput').value);
+
+                if (!isNaN(minutesInput) && !isNaN(secondsInput)) {
+                    totalSeconds = minutesInput * 60 + secondsInput;
+                    updateTimerDisplay();
+                    clearInterval(timer);
+                    timer = setInterval(updateTimer, 1000);
+                }
+            }
+
+            function stopTimer() {
+                clearInterval(timer);
+            }
+
+            function updateTimer() {
+                if (totalSeconds > 0) {
+                    totalSeconds--;
+                    updateTimerDisplay();
+                } else {
+                    clearInterval(timer);
+                }
+            }
+
+            function updateTimerDisplay() {
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+                const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                document.getElementById('timer').textContent = formattedTime;
+            }
+
+ /*           // Automatically restart the timer when it reaches 0
+            setInterval(() => {
+                if (totalSeconds === 0) {
+                    startTimer();
+                }
+            }, 1000);
+*/
+            function displaySearchResults(results) {
+                searchResults.innerHTML = ''; // Clear previous results
+
+                // Clone the original image
+                const randomImageClone = randomImage.cloneNode(true);
+                randomImageClone.height = 200; // Set the height to 200px
+                randomImageClone.classList.add('clickable-image'); // Make the random image clickable
+
+                // Add the original image to the array of results
+                results.push({
+                    image: randomImageClone,
+                    isRandom: true // Flag to identify the random image
+                });
+
+                // Shuffle the order of results, including the original image
+                shuffleArray(results);
+
+                results.forEach((result) => {
+                    const resultContainer = document.createElement('div'); // Container for each result
+                    resultContainer.classList.add('search-result');
+
+                    const image = document.createElement('img');
+                    const guessButton = document.createElement('button'); // Add Guess button
+                    guessButton.textContent = 'Guess';
+                    guessButton.addEventListener('click', () => guessImage(result));
+
+                    if (result.image) {
+                        image.src = result.image.src;
+                    } else {
+                        image.src = result.urls.regular;
+                    }
+                    image.alt = result.alt_description;
+                    image.height = 200; // Set the height to 200px
+                    image.classList.add('clickable-image'); // Make the search results images clickable
+
+                    resultContainer.appendChild(image);
+                    resultContainer.appendChild(guessButton); // Append Guess button to the container
+                    searchResults.appendChild(resultContainer);
+                });
+
+                searchResults.style.display = 'block';
+            }
+
+            function guessImage(result) {
+                if (result.isRandom) {
+                    alert('Your guess is correct! It is the random image.');
+                } else {
+                    alert('Your guess is incorrect. It is a searched image.');
+                }
+            }
+
+            // Function to shuffle an array using Fisher-Yates algorithm
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+
+            // Toggle image size when clicked
+        document.addEventListener('click', (event) => {
+            if (event.target.classList.contains('clickable-image')) {
+                if (event.target.height === 200) {
+                    event.target.height = 500; // Increase image size
+                    // Add the 'large' class to the parent .search-result element
+                    event.target.closest('.search-result').classList.add('large');
+                } else {
+                    event.target.height = 200; // Shrink image size back to the original
+                    // Remove the 'large' class from the parent .search-result element
+                    event.target.closest('.search-result').classList.remove('large');
+                }
+            }
+        });
+
+function updateTimer() {
+    if (totalSeconds > 0) {
+        totalSeconds--;
+        updateTimerDisplay();
+    } else {
+        clearInterval(timer);
+        showPopup();
+    }
+}
+
+function showPopup() {
+    const isContinue = window.confirm('Time is up! What do you want to do?\n\nPress "Cancel" to continue or "OK" to restart the timer.');
+    if (isContinue) {
+        // User clicked "OK" (Continue)
+        clearInterval(timer);
+    } else {
+        // User clicked "Cancel" (Restart)
+        startTimer();
+    }
+}
+
+
+        </script>
+    </main>
+    <footer class="navigation">
+        <a href="../pages/contact.html">Contact</a>
+        <a href="../pages/about.html">About</a>
+    </footer>
+</body>
+
+</html>
