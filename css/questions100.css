@@ -1,0 +1,46 @@
+.checkbox-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.word-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.word-checkbox {
+    margin-right: 10px;
+}
+
+.group-checkbox {
+    margin-right: 10px;
+}
+.randomOutput {
+    font-size: 2em;
+    text-align: center;
+    background-image: url("../images/lightGrey.png"); 
+    height: 100px;
+    padding: 10px;
+    cursor: pointer;
+}
+.randomOutput:hover{
+    background-image: url("../images/darkGrey.png");  
+    background-size: 100%;  
+}
+
+label  {
+    font-size: 1.5em;
+
+}
+
+.groupCheckbox {
+    background-color: white;
+    font-style: italic;
+    display: block;
+}
+
+.word-group {
+    border: solid black 1px;
+}
