@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="../../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+<title>Games</title>
+  <script src="../js/script.js" defer></script>
+</head>
+
+<body>
+
+        <header class="navigation"><a href="../../index.html"><span class="homeButton"></span></a> &gt; <a href="../games.html">Games</a> &gt; <a href="rowAndColumn.html">Row and Column</a></header>
+    <main>
+
+<script>
+    //default 
+    // Default CSV content
+    const defaultCons = `Technology:,Artificial Intelligence,Blockchain,Virtual Reality,Cybersecurity,Quantum Computing,Internet of Things,Machine Learning,Augmented Reality,3D Printing,Automation
+Travel:,Adventure Tourism,Sustainable Travel,Cultural`;
+
+    // Function to set default CSV content
+    function setDefaultContent() {
+        const rows = defaultCons.split('\n').map(row => row.split(','));
+        displayResults();
+    }
+
+    // Set default content on page load
+    window.onload = setDefaultContent;
+
+
+    //
+    let rows = [];
+    let prevRandomRowIndex = -1;
+    let prevRandomColumnIndex = -1;
+
+    // Function to display the results
+    function displayResults() {
+        // Result 1: Display only the category
+        document.getElementById('result1').innerHTML = rows[randomRowIndex][0];
+
+        // Result 2: Display only the corresponding data
+        document.getElementById('result2').innerHTML = rows[randomRowIndex][randomColumnIndex];
+    }
+
+    // Function to handle 'Row' button click
+    function changeRow() {
+        randomRowIndex = getRandomRowIndex();
+        while (randomRowIndex === prevRandomRowIndex || randomRowIndex === 0) {
+            randomRowIndex = getRandomRowIndex();
+        }
+        prevRandomRowIndex = randomRowIndex;
+
+        randomColumnIndex = getRandomColumnIndex();
+        displayResults();
+    }
+
+    // Function to handle 'Column' button click
+    function changeColumn() {
+        randomColumnIndex = getRandomColumnIndex();
+        while (randomColumnIndex === prevRandomColumnIndex) {
+            randomColumnIndex = getRandomColumnIndex();
+        }
+        prevRandomColumnIndex = randomColumnIndex;
+
+        displayResults();
+    }
+
+    // Function to handle file input change
+    function handleFileUpload(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const content = e.target.result;
+                rows = content.split('\n').map(row => row.split(','));
+
+                // Remove the first row
+                rows.shift();
+
+                // Remove rows that have empty values in the first column (category)
+                rows = rows.filter(row => row[0].trim() !== '');
+
+                displayResults();
+            };
+
+            reader.readAsText(file);
+        }
+    }
+
+    // Function to get a random row index (excluding empty rows and the first row)
+    function getRandomRowIndex() {
+        const nonEmptyRows = rows.filter((row, index) => index !== 0 && row[0].trim() !== '');
+        return Math.floor(Math.random() * nonEmptyRows.length);
+    }
+
+    // Function to get a random column index (excluding column A and empty columns)
+    function getRandomColumnIndex() {
+        const nonEmptyColumns = rows[randomRowIndex].slice(1).filter(cell => cell.trim() !== '');
+        return Math.floor(Math.random() * nonEmptyColumns.length) + 1; // Adding 1 to account for excluding column A
+    }
+    // Function to download the template file
+    function downloadTemplate() {
+        const templateContent = "Result1,Result2 -->\n"; // Modify as per your template
+        const blob = new Blob([templateContent], { type: 'text/csv' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'template.csv';
+        link.click();
+    }
+</script>
+<!-- Download Template button -->
+<button onclick="downloadTemplate()">Download Template</button>
+
+<!-- File input for CSV upload -->
+<input type="file" accept=".csv" onchange="handleFileUpload(event)">
+
+<!-- Buttons to change row and column -->
+<button onclick="changeRow()">Change Row</button>
+<button onclick="changeColumn()">Change Column</button>
+
+<!-- Result containers -->
+<h2>Result 1:</h2>
+<div id="result1"></div>
+
+<h2>Result 2:</h2>
+<div id="result2"></div>
+    </main>
+    <footer class="navigation"> 
+        <a href="../../pages/contact.html">Contact</a>
+        <a href="../../pages/about.html">About</a>
+    </footer>
+</body>
+
+</html>

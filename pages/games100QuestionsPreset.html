@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/questions100.css">
+    <title>100 Questions</title>
+    <script src="js/script.js" defer></script>
+<style type="text/css">
+    #checkboxes-container {
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+    <script src="../js/questions100.js"></script>
+    <!-- Container for dynamically generated checkboxes -->
+
+    <header class="navigation"><a href="../index.html"><span class="homeButton"></span></a> &gt; <a href="games.html">Games</a> &gt; <a href="games100Questions.html">100 Questions</a></header>
+    <main>
+
+   <button type="button" id="filter" class="nextBtn" onclick="toggleCheckboxes()"> Filter</button>
+        <div id="checkboxes-container"></div>
+        <div id="group-checkboxes-container"></div>
+        <!-- Button to randomly choose one of the ticked variables -->
+        <div class="randomOutput">
+            <!-- Display area for the random output -->
+            <p id="output">Click Here</p>
+        </div>
+
+        <script>
+            function toggleCheckboxes() {
+                const checkboxesContainer = document.getElementById('checkboxes-container');
+                checkboxesContainer.style.display = checkboxesContainer.style.display === 'block' ? 'none' : 'block';
+            }
+            document.addEventListener("DOMContentLoaded", function () {
+                // Assuming csvData is available in questions100.js
+                const data = csvData.split('\n').map(row => row.split(','));
+
+                // Extracting data into variables
+                const variables = [];
+                const checkedVariables = []; // Keep track of checked variables
+                const headerRow = data[0];
+                const descriptionRow = data[1];
+                const uniqueWords = Array.from(new Set(descriptionRow)); // Unique words in row [1]
+
+                for (let i = 0; i < headerRow.length; i++) {
+                    variables[i] = data.slice(2).map(row => row[i]); // Start from row [2]
+                    checkedVariables[i] = true; // Default to checked
+                }
+
+                // Function to generate a random output for a given variable
+                function getRandomOutput(variable) {
+                    let randomIndex;
+                    let randomValue;
+
+                    do {
+                        randomIndex = Math.floor(Math.random() * variable.length);
+                        randomValue = variable[randomIndex];
+                    } while (!randomValue && checkedVariables.some((isChecked, index) => isChecked && !variables[index][randomIndex]));
+
+                    return randomValue;
+                }
+
+                // Function to display the random output for a given variable
+                function displayRandomOutput(variable) {
+                    const output = getRandomOutput(variable);
+                    document.getElementById('output').innerText = output;
+                }
+
+
+                // Dynamically generate checkboxes and a button for all ticked variables
+                const checkboxesContainer = document.getElementById('checkboxes-container');
+                const randomVariableButton = document.getElementById('random-variable-button');
+
+                // Checkbox box for tick/untick all checkbox
+                const tickUntickAllBox = document.createElement('div');
+                tickUntickAllBox.className = 'checkbox-box';
+                checkboxesContainer.appendChild(tickUntickAllBox);
+
+                // Checkbox to tick/untick all other checkboxes
+                const tickUntickAllCheckbox = document.createElement('input');
+                tickUntickAllCheckbox.type = 'checkbox';
+                tickUntickAllCheckbox.id = 'tick-untick-all';
+                tickUntickAllCheckbox.checked = true; // Default to checked
+                tickUntickAllCheckbox.addEventListener('change', function () {
+                    const isChecked = this.checked;
+                    checkedVariables.forEach((_, index) => {
+                        checkedVariables[index] = isChecked;
+                        document.getElementById(`variable${index + 1}`).checked = isChecked;
+                    });
+                    document.querySelectorAll('.group-checkbox').forEach(checkbox => {
+                        checkbox.checked = isChecked;
+                    });
+                });
+                tickUntickAllBox.appendChild(tickUntickAllCheckbox);
+
+                // Label for the tick/untick all checkbox
+                const tickUntickAllLabel = document.createElement('label');
+                tickUntickAllLabel.htmlFor = 'tick-untick-all';
+                tickUntickAllLabel.textContent = 'Tick/Untick All';
+                tickUntickAllBox.appendChild(tickUntickAllLabel);
+
+                // Container for word groups
+                const wordGroupsContainer = document.createElement('div');
+                checkboxesContainer.appendChild(wordGroupsContainer);
+
+                // Create separate groups for each unique word
+                uniqueWords.forEach(word => {
+                    const wordGroup = document.createElement('div');
+                    wordGroup.className = 'word-group';
+                    wordGroupsContainer.appendChild(wordGroup);
+
+                    // Container for the group checkbox and label within "categories" div
+                    const categoriesDiv = document.createElement('div');
+                    categoriesDiv.className = 'categories';
+                    wordGroup.appendChild(categoriesDiv);
+
+                    // Group checkbox for the current word
+                    const groupCheckbox = document.createElement('input');
+                    groupCheckbox.type = 'checkbox';
+                    groupCheckbox.className = 'group-checkbox';
+                    groupCheckbox.id = `group-checkbox-${word}`;
+                    groupCheckbox.checked = true; // Default to checked
+                    groupCheckbox.addEventListener('change', function () {
+                        const isChecked = this.checked;
+
+                        // Uncheck the "Tick/Untick All" checkbox if any group checkbox is unchecked
+                        if (!isChecked) {
+                            tickUntickAllCheckbox.checked = false;
+                        } else {
+                            // Check the "Tick/Untick All" checkbox if all group checkboxes are checked
+                            const allGroupCheckboxes = document.querySelectorAll('.group-checkbox');
+                            tickUntickAllCheckbox.checked = Array.from(allGroupCheckboxes).every(checkbox => checkbox.checked);
+                        }
+
+                        // Synchronize the state for checkboxes with the same word
+                        document.querySelectorAll(`.word-checkbox[data-word="${word}"]`).forEach(checkbox => {
+                            checkbox.checked = isChecked;
+                            const index = parseInt(checkbox.id.replace('variable', ''), 10) - 1;
+                            checkedVariables[index] = isChecked;
+                        });
+                    });
+                    groupCheckbox.setAttribute('data-word', word);
+                    categoriesDiv.appendChild(groupCheckbox);
+
+                    // Label for the group checkbox
+                    const groupLabel = document.createElement('label');
+                    groupLabel.htmlFor = `group-checkbox-${word}`;
+                    groupLabel.textContent = `Group: ${word}`;
+                    groupLabel.classList.add('groupCheckbox');
+                    categoriesDiv.appendChild(groupLabel);
+
+                    // Checkbox for each variable with the current word in the description
+                    for (let i = 0; i < headerRow.length; i++) {
+                        if (descriptionRow[i] === word) {
+                            const checkbox = document.createElement('input');
+                            checkbox.type = 'checkbox';
+                            checkbox.className = 'word-checkbox';
+                            checkbox.id = `variable${i + 1}`;
+                            checkbox.checked = true; // Default to checked
+                            checkbox.addEventListener('change', function () {
+                                checkedVariables[i] = this.checked;
+
+                                // Uncheck the "Tick/Untick All" checkbox if any word checkbox is unchecked
+                                if (!this.checked) {
+                                    tickUntickAllCheckbox.checked = false;
+                                } else {
+                                    // Check the "Tick/Untick All" checkbox if all word checkboxes are checked
+                                    const allWordCheckboxes = document.querySelectorAll(`.word-checkbox[data-word="${word}"]`);
+                                    tickUntickAllCheckbox.checked = Array.from(allWordCheckboxes).every(checkbox => checkbox.checked);
+                                }
+                            });
+                            checkbox.setAttribute('data-word', word);
+                            categoriesDiv.appendChild(checkbox);
+
+                            // Label for the checkbox
+                            const label = document.createElement('label');
+                            label.htmlFor = `variable${i + 1}`;
+                            label.textContent = headerRow[i];
+                            categoriesDiv.appendChild(label);
+                        }
+                    }
+                });
+                // Button to randomly choose one of the ticked variables and display its random output
+                document.getElementById('output').addEventListener('click', () => {
+                    const tickedIndexes = checkedVariables.reduce((acc, isChecked, index) => {
+                        if (isChecked) {
+                            acc.push(index);
+                        }
+                        return acc;
+                    }, []);
+
+                    if (tickedIndexes.length > 0) {
+                        const randomIndex = tickedIndexes[Math.floor(Math.random() * tickedIndexes.length)];
+                        displayRandomOutput(variables[randomIndex]);
+                    }
+                });
+
+            });
+        </script>
+            <div class="navigation"><a class="blockButton" href="games100QuestionsImport.html">Import data</a></div>
+    </main>
+    <footer class="navigation">
+        <a class="blockButton" href="pages/contact.html">Contact</a> <a href="pages/about.html">About</a>
+    </footer>
+
+</body>
+
+</html>

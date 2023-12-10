@@ -1,0 +1,461 @@
+<!-- look at the rounds, and revise the game rules. -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="../../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+<title>Games</title>
+  <script src="../js/script.js" defer></script>
+<style>
+	/*make player boxes flex elements in columns */
+        .team-box {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid #000;
+            cursor: pointer;
+        }
+        #redBox { background-color: red; }
+        #blueBox { background-color: blue; }
+        #greenBox { background-color: green; }
+        #orangeBox { background-color: orange; }
+
+/* rounds */
+        .round {
+            display: none;
+        }
+
+</style>
+
+</head>
+
+<body>
+
+		<header class="navigation"><a href="../../index.html"><span class="homeButton"></span></a> &gt; <a href="../games.html">Games</a> &gt; <a href="advertisementBattle.html">Advertisement Battle</a></header>
+	<main>
+			    <h1>Advertisement Battle</h1>
+    <div class="buttonBox">
+        <button id="generateObjects">Objects</button>
+        <button id="generateProblem">Problem</button>
+        <button id="generateAudience">Target Audience</button>
+    </div>
+    <div id="result">
+        <p id="objectResult" class="result-text"></p>
+        <p id="problemResult" class="result-text"></p>
+        <p id="audienceResult" class="result-text"></p>
+
+        <div id="redBox" class="team-box" onclick="assignToTeam('red')"></div>
+        <div id="blueBox" class="team-box" onclick="assignToTeam('blue')"></div>
+        <div id="greenBox" class="team-box" onclick="assignToTeam('green')"></div>
+        <div id="orangeBox" class="team-box" onclick="assignToTeam('orange')"></div>
+
+
+    </div>
+    <div id="instructionBox">
+    	    <div id="rounds">
+<section id="round1" class="round">
+    <h2>Round 1: Introduce the Product</h2>
+    <p>Start by giving a catchy name and a brief description of the product. What is it, and what does it do?</p>
+    <!-- Add content for the first round here -->
+</section>
+
+<section id="round2" class="round">
+    <h2>Round 2: Problem-Solution Approach</h2>
+    <p>Highlight a common problem or inconvenience that people face and explain how your product solves it in a unique way.</p>
+    <!-- Add content for the second round here -->
+</section>
+
+<section id="round3" class="round">
+    <h2>Round 3: Unusual Use Cases</h2>
+    <p>Share some unexpected and unusual ways people can use the product. Get creative with this – the more unexpected, the better!</p>
+    <!-- Add content for the third round here -->
+</section>
+<section id="round4" class="round">
+    <h2>Round 4: Testimonials</h2>
+    <p>Include fictional customer testimonials that emphasize the product's benefits and versatility.</p>
+    <!-- Add content for the fourth round here -->
+</section>
+
+<section id="round5" class="round">
+    <h2>Round 5: Comparative Advantage</h2>
+    <p>Explain how your product stands out from the competition or offers something that no other product can. (think of something similar, how is this better?)</p>
+    <!-- Add content for the fifth round here -->
+</section>
+
+<section id="round6" class="round">
+    <h2>Round 6: Before and After</h2>
+    <p>Draw a before and after of using this product.</p>
+    <!-- Add content for the sixth round here -->
+</section>
+
+<section id="round7" class="round">
+    <h2>Round 7: User Experience</h2>
+    <p>Describe the user experience - how easy and enjoyable it is to use the product.</p>
+    <!-- Add content for the seventh round here -->
+</section>
+
+<section id="round8" class="round">
+    <h2>Round 8: Demonstration</h2>
+    <p>Mime or draw the product in action. How does it work, and how can it make people's lives easier or more exciting?</p>
+    <!-- Add content for the eighth round here -->
+</section>
+
+<section id="round9" class="round">
+    <h2>Round 9: Sensory Appeal</h2>
+    <p>Highlight any sensory experiences related to the product, such as its scent, texture, color, or sound.</p>
+    <!-- Add content for the ninth round here -->
+</section>
+
+<section id="round10" class="round">
+    <h2>Round 10: Limited-Time Offer</h2>
+    <p>Create a sense of urgency by offering a special limited-time discount or promotion.</p>
+    <!-- Add content for the tenth round here -->
+</section>
+
+<section id="round11" class="round">
+    <h2>Round 11: Call to Action</h2>
+    <p>Encourage viewers to take action – visit your website, call a hotline, or visit a store to purchase the product.</p>
+    <!-- Add content for the eleventh round here -->
+</section>
+
+<section id="round12" class="round">
+    <h2>Round 12: Quirky Spokesperson</h2>
+    <p>If applicable, introduce a quirky mascot for your product who can add humor or charm to the advertisement.</p>
+    <!-- Add content for the twelfth round here -->
+</section>
+
+<section id="round13" class="round">
+    <h2>Round 13: Jingle or Catchphrase</h2>
+    <p>Create a memorable song or catchphrase that will stick in the audience's minds.</p>
+    <!-- Add content for the thirteenth round here -->
+</section>
+
+<section id="round14" class="round">
+    <h2>Round 14: Gift Ideas</h2>
+    <p>Explain how the product can be a unique and unexpected gift for different occasions.</p>
+    <!-- Add content for the fourteenth round here -->
+</section>
+
+<section id="round15" class="round">
+    <h2>Round 15: Sustainability</h2>
+    <p>If your product is eco-friendly or has sustainable features, emphasize its positive impact on the environment.</p>
+    <!-- Add content for the fifteenth round here -->
+</section>
+
+<section id="round16" class="round">
+    <h2>Round 16: Safety and Quality</h2>
+    <p>Highlight any safety certifications or quality guarantees to build trust with potential customers.</p>
+    <!-- Add content for the sixteenth round here -->
+</section>
+
+<section id="round17" class="round">
+    <h2>Round 17: Local Connection</h2>
+    <p>Share a heartwarming story about the product's local origin or the people behind it.</p>
+    <!-- Add content for the seventeenth round here -->
+</section>
+
+<section id="round18" class="round">
+    <h2>Round 18: Endorsements</h2>
+    <p>Mention any endorsements or partnerships with relevant influencers, experts, or organizations. (Think of famous people who would advertise it)</p>
+    <!-- Add content for the eighteenth round here -->
+</section>            <!-- Add content for the third round here -->
+        </section>
+        <!-- Repeat the pattern for the other rounds -->
+    </div>
+
+    <div id="navigation">
+        <button id="prevBtn" onclick="showRound(-1)">Previous</button>
+        <button id="nextBtn" onclick="showRound(1)">Next</button>
+    </div>
+
+    <script>
+        // JavaScript for showing rounds...
+        let currentRound = 1;
+        const rounds = document.querySelectorAll('.round');
+
+        function showRound(step) {
+            rounds[currentRound - 1].style.display = 'none';
+            currentRound += step;
+
+            if (currentRound < 1) {
+                currentRound = rounds.length;
+            } else if (currentRound > rounds.length) {
+                currentRound = 1;
+            }
+
+            rounds[currentRound - 1].style.display = 'block';
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            showRound(0); // Show the first round initially
+        });
+    </script>
+
+<!--        <ol>
+            <li>Each student gets 5 cards, A, 2, 3, 4, 5 </li>
+            <li>For each object they need to vote How useful it is, 5 is most A is least.</li>
+            <li>As each object is shown, teams will choose their number.</li>
+            <li>The team who votes the highest will get that object as their teams product.</li>
+            <li>Once all teams have a product, they will all be presented with the same target audience to try to sell thier product</li>
+            <li>If there are more than two teams, each team will vote who had the better advertisment out of the other teams excluding their own.</li>
+            <li>After several rounds, the teams will then have to sell their product as a solution to a specific problem.</li>
+        </ol> -->
+    </div>
+
+    <script>
+        // Arrays for random objects, problems, and target audiences
+        const objects = [
+    "Rubber duck",
+    "Pet rock",
+    "Fake mustache collection",
+    "Banana slicer",
+    "Desktop punching bag",
+    "Hula hoop with LEDs",
+    "Bedazzled toaster",
+    "Toothpaste-flavored gum",
+    "Portable pet translator",
+    "USB-powered coffee warmer",
+    "Glow-in-the-dark toilet paper",
+    "Wacky waving inflatable arm-flailing tube man",
+    "Sock sandals",
+    "Square watermelon mold",
+    "Inflatable unicorn horn for cats",
+    "Singing fish wall plaque",
+    "Butt-shaped tissue dispenser",
+    "Fake snow machine for indoors",
+    "Glow-in-the-dark shoelaces",
+    "Cucumber straightener",
+    "Indoor potted plant watering robot",
+    "Electric spaghetti fork twirler",
+    "Cheeseburger phone",
+    "Blinking turn signal gloves",
+    "Bubble wrap suit",
+    "Toothbrush helmet",
+    "Chicken noodle soup-scented candles",
+    "Cat ear headband that reads your mind",
+    "Zombie garden gnome",
+    "Pizza-scented air freshener",
+    "Inflatable sumo wrestler suit",
+    "Fake parking ticket pad",
+    "Disco ball for the shower",
+    "WiFi-connected smart socks",
+    "Nose-shaped pencil sharpener",
+    "Remote control flying fish",
+    "Inflatable beard pillow",
+    "Potato chip hair clip",
+    "Pencil eraser hat",
+    "USB pet rock warmer",
+    "Self-stirring coffee mug",
+    "Hand-shaped salad tongs",
+    "Electric spaghetti measuring fork",
+    "Singing toilet paper",
+    "Inflatable toast",
+    "Dancing cactus speaker",
+    "Finger hands (tiny hand puppets)",
+    "Unnecessary button pusher",
+    "Flying toast clock",
+    "Pancake printer",
+    "Dancing flower in a pot",
+    "Underwear with built-in air conditioning",
+    "Shoehorn umbrella",
+    "USB pet rock charger",
+    "Light-up bowtie",
+    "Glow-in-the-dark fidget spinner",
+    "Screaming pickle stress toy",
+    "Selfie toaster (toasts your face on bread)",
+    "Inflatable sushi",
+    "Disco ball helmet",
+    "Hamburger earmuffs",
+    "Inflatable spaghetti monster",
+    "Pizza-scented soap",
+    "Beer helmet with straws",
+    "Dancing broomstick",
+    "Beard glitter kit",
+    "Banana phone",
+    "Cat paw doorstop",
+    "Mustard ice cream",
+    "Donut-shaped coffee mug",
+    "Squirrel-shaped corn on the cob holders",
+    "Fake bug ice cubes",
+    "Giant nose shower gel dispenser",
+    "Popcorn-scented candles",
+    "Radio-controlled flying toilet",
+    "Toothbrush that plays music",
+    "Bacon-scented soap",
+    "Toilet golf game",
+    "Light-up toilet seat",
+    "Dancing flamingo speaker",
+    "Inflatable broccoli",
+    "Llama-shaped soap dispenser",
+    "Burrito blanket",
+    "Pineapple-shaped pen holder",
+    "Alien abduction cow lamp",
+    "Toothpaste-flavored toothpaste",
+    "Inflatable waffle",
+    "Ice cream cone shower cap",
+    "Disco ball toilet paper holder",
+    "USB pet rock air purifier",
+    "Musical roadkill plush toys",
+    "Chicken drumstick pillow",
+    "Pancake-scented perfume",
+    "Self-stirring fork",
+    "Hamburger flip-flop sandals",
+    "Dancing disco ball hat",
+    "Inflatable rubber chicken",
+    "Cat butt tissue dispenser",
+    "Banana-shaped umbrella",
+    "Scented shoelaces", "Apple", "Bicycle", "Chair", "Dog", "Eiffel Tower", "Feather", "Guitar", "Hat", "Ice cream cone", "Jellyfish", "Key", "Lamp", "Microphone", 
+    "Notebook", "Orange", "Pineapple", "Quilt", "Rainbow", "Soccer ball", "Telescope", "Umbrella", "Violin", "Watermelon", "Xylophone", "Zebra", "Backpack", "Camera", 
+    "Dinosaur", "Elephant", "Fork", "Globe", "Hammer", "Insect", "Jeans", "Kite", "Lemon", "Motorcycle", "Necklace", "Ostrich", "Pizza", "Quill", "Rose", "Sunflower", "Truck", 
+    "Violin", "Wallet", "Xbox controller", "Yo-yo", "Zucchini", "Airplane", "Basketball", "Carrot", "Dolphin", "Egg", "Fire extinguisher", "Guitar pick", "Hula hoop", "Ice skate", 
+    "Jump rope", "Koala", "Lighthouse", "Maracas", "Nutmeg", "Origami crane", "Parachute", "Quilted blanket", "Rocking chair", "Snorkel", "Tambourine", "Ukulele", "Vintage watch", 
+    "Wetsuit", "Yoyo", "Extendable claw", "Magic eight ball", "Sea urchin shell", "Hourglass", "Electric eel", "Moon rock", 
+    "Magic eight ball", "Didgeridoo", "ladder", "Tesla roadster"];
+
+        const problems = ["Stress at work", "Slow internet connection", "Difficulty sleeping", "Weight gain", "Boring commute",     "Weight gain",
+    "Time management",
+    "Stress and anxiety",
+    "Procrastination",
+    "Financial debt",
+    "Lack of sleep",
+    "Clutter and organization",
+    "Skin issues",
+    "Lack of motivation",
+    "Poor work-life balance",
+    "Limited time for hobbies",
+    "Health and wellness",
+    "Financial insecurity",
+    "Problems with relationships",
+    "Lack of knowledge",
+    "Aging-related concerns",
+    "Environmental concerns",
+    "Travel hassles",
+    "Unsatisfactory home environment",
+    "Procrastination",
+    "Boredom",
+    "Healthcare access",
+    "Limited access to education",
+    "Food choices",
+    "Inadequate sleep",
+    "Parenting challenges",
+    "Loneliness",
+    "Home security",
+    "Hair loss",
+    "Bad posture",
+    "Lack of creativity",
+    "Career stagnation",
+    "Car troubles",
+    "Gardening problems",
+    "Gaming addiction",
+    "Wardrobe malfunctions",
+    "Technology overload",
+    "Eating disorders",
+    "Public speaking anxiety",
+    "Digital privacy concerns",
+    "Pet behavior issues",
+    "Public transportation hassles",
+    "Language learning difficulties",
+    "Unwanted hair",
+    "Dental problems",
+    "Car maintenance challenges",
+    "Home repair dilemmas",
+    "Grief and loss",
+    "Difficulty making decisions",
+];
+        const audiences = ["Tech enthusiasts", "Students", "Coffee lovers", "Fitness enthusiasts", "Musicians",             "Teenagers",
+            "Parents",
+            "Tech Enthusiasts",
+            "Fitness Lovers",
+            "Foodies",
+            "Gardening Enthusiasts",
+            "Travelers",
+            "Bookworms",
+            "Gamers",
+            "Artists",
+            "Music Lovers",
+            "Pet Owners",
+            "Outdoor Adventurers",
+            "Fashionistas",
+            "DIY Enthusiasts",
+            "Movie Buffs",
+            "Sports Fans",
+            "Entrepreneurs",
+            "Environmentalists",
+];
+
+
+        // Map to store assigned objects for each team
+        const teamAssignments = {
+            red: [],
+            blue: [],
+            green: [],
+            orange: []
+        };
+
+        // Function to generate random items and display them one at a time
+        function generateRandomObject() {
+            // Hide previous results
+            document.getElementById("objectResult").textContent = '';
+            document.getElementById("problemResult").textContent = '';
+            document.getElementById("audienceResult").textContent = '';
+
+            const randomObject = objects[Math.floor(Math.random() * objects.length)];
+            document.getElementById("objectResult").textContent = randomObject;
+        }
+
+        function generateRandomProblem() {
+            // Hide previous results
+            document.getElementById("objectResult").textContent = '';
+            document.getElementById("problemResult").textContent = '';
+            document.getElementById("audienceResult").textContent = '';
+
+            const randomProblem = problems[Math.floor(Math.random() * problems.length)];
+            document.getElementById("problemResult").textContent = randomProblem;
+        }
+
+        function generateTargetAudience() {
+            // Hide previous results
+            document.getElementById("objectResult").textContent = '';
+            document.getElementById("problemResult").textContent = '';
+            document.getElementById("audienceResult").textContent = '';
+
+            const randomAudience = audiences[Math.floor(Math.random() * audiences.length)];
+            document.getElementById("audienceResult").textContent = randomAudience;
+        }
+
+        // Function to assign an object to a team
+        function assignToTeam(team) {
+            const currentObject = document.getElementById("objectResult").textContent;
+            if (currentObject.trim() !== '') {
+                teamAssignments[team].push(currentObject);
+                updateTeamBoxes();
+                generateRandomObject(); // Show the next random object
+            }
+        }
+
+        // Function to update the display of assigned objects in team boxes
+        function updateTeamBoxes() {
+            document.getElementById("redBox").textContent = teamAssignments.red.join(", ");
+            document.getElementById("blueBox").textContent = teamAssignments.blue.join(", ");
+            document.getElementById("greenBox").textContent = teamAssignments.green.join(", ");
+            document.getElementById("orangeBox").textContent = teamAssignments.orange.join(", ");
+        }
+
+        // Attach click event listeners to the buttons
+        document.getElementById("generateObjects").addEventListener("click", generateRandomObject);
+        document.getElementById("generateProblem").addEventListener("click", generateRandomProblem);
+        document.getElementById("generateAudience").addEventListener("click", generateTargetAudience);
+
+        // Initial object generation
+        generateRandomObject();
+    </script>
+	</main>
+	<footer class="navigation"> 
+		<a href="../../pages/contact.html">Contact</a>
+		<a href="../../pages/about.html">About</a>
+	</footer>
+</body>
+
+</html>

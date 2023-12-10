@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<title>Roleplay Narration</title>
+  <script src="../js/script.js" defer></script>
+</head>
+<style>
+ #settingResult {
+    font-size: 1.5em;
+text-align: center;
+border: solid black 1px;
+padding: 10px;
+border-radius: 5px;
+width: 80%;
+margin-top: 10%;
+ }
+
+ #audienceResult {
+text-align: center;
+    font-size: 1.5em;
+ }
+.screen {
+    min-height: 80vh;
+}
+
+</style>
+<body>
+<header class="navigation"><a href="../index.html"><span class="homeButton"></span></a> &gt; <a href="games.html">Games</a> &gt; <a href="gamesTemplate.html">Roleplay Narration</a></header>
+<section class="screen">
+
+        <div id="result">
+            <div class="rowCenter"  id="generateSetting">
+                <p id="settingResult">Setting</p>
+            </div>
+            <div class="rowCenter"   id="generateNarration">
+                <p id="audienceResult">Narration</p>
+            </div>
+        </div>
+</section>
+    <script>
+        const settings =  
+            ["Airport security checkpoint",
+            "Doctor's office",
+            "Coffee shop",
+            "Police station",
+            "Job interview",
+            "Grocery store",
+            "Hotel reception",
+            "School cafeteria",
+            "Library",
+            "Bus stop",
+            "Restaurant",
+            "Movie theater",
+            "Gym",
+            "Beach",
+            "Park",
+            "Zoo",
+            "Post office",
+            "Shopping mall",
+            "Car rental agency",
+            "Pet store",
+            "Bakery",
+            "Hair salon",
+            "Bus station",
+            "Subway station",
+            "Amusement park",
+            "Museum",
+            "Classroom",
+            "Office meeting",
+            "Gas station",
+            "Campsite",
+            "Space station",
+            "Police car patrol",
+            "TV news studio",
+            "Bank",
+            "Tourist information center",
+            "Pharmacy",
+            "Art gallery",
+            "Concert venue",
+            "Wedding ceremony",
+            "Construction site",
+            "Radio station",
+            "Circus",
+            "Space exploration mission",
+            "Detective agency",
+            "Comedy club",
+            "Fire station",
+            "Roller coaster ride",
+            "Taxi cab",
+            "Helicopter tour",
+            "Time travel agency",
+            "Science laboratory",
+            "Superhero headquarters",
+            "Animal shelter",
+            "Fashion show backstage",
+            "International space station",
+            "Game show",
+            "Ski resort",
+            "Summer camp",
+            "Car wash",
+            "Recording studio",
+            "Pirate ship",
+            "Haunted house",
+            "Comedy improv class",
+            "Talk show",
+            "Yoga class",
+            "Dance competition",
+            "Cooking class",
+            "School play rehearsal",
+            "Mountain climbing expedition",
+            "Newsstand",
+            "Video game development studio",
+            "Underwater exploration",
+            "Art class",
+            "Chess tournament",
+            "TV game show contestant",
+            "Hiking trail",
+            "Astronaut training facility",
+            "Magic show",
+            "Road trip",
+            "Paranormal investigation",
+            "Hot air balloon ride",
+            "Wilderness survival",
+            "Poetry slam",
+            "Lunar base",
+            "Ice cream parlor",
+            "Train station",
+            "Underground bunker",
+            "Trivia night",
+            "Street market"
+        ];
+
+const narrations = [
+    "Suddenly, {OBJECT} appears!",
+    "Suddenly, player A discovers he has a superpower, the ability to fly!",
+    "Suddenly, player B really wants to eat {OBJECT}.",
+    "Suddenly, player A forgets their own name.",
+    "Suddenly, player B forgets the word for {OBJECT}.",
+    "Unexpectedly, player A gains the power to communicate with {OBJECT}!",
+    "Without warning, player B finds mysterious {OBJECT} in their pocket.",
+    "Abruptly, a time-traveling device appears, and player B accidentally activates it.",
+    "Suddenly, player A can read minds.",
+    "Out of the blue, a talking cat approaches player B and asks for {OBJECT} in English.",
+    "Player A and B switch bodies.",
+    "All of a sudden, player A develops a hate toward {OBJECT}.",
+    "Suddenly, the gravity in the area becomes unpredictable, causing objects to float randomly.",
+    "Player B starts speaking in rhymes without realizing it.",
+    "Player A thinks everything player B says is an insult.",
+    "Player A thinks player B wants {OBJECT}.",
+    "Suddenly they smell {OBJECT}",
+    "Suddenly, player B can understand and communicate with {OBJECT}.",
+    "Without warning, a message appears in the sky. It says {OBJECT}.",
+    "Suddenly player A starts to copy everything that player B does."
+];
+
+        const objects = ["Rubber ducks", "Pet rock ", "Shoelaces that smell like strawberries", "Apple  that taste like oranges", "Bicycles with a trailer", "Chairs", "Dogs", "The Eiffel Tower", "Feathers", "Guitars", "Hats", "Ice cream cones", "Jellyfishes", "Keys", "Lamps", "Microphones", "Notebooks", "Oranges", "Pineapples", "Quilts", "Rainbows", "Soccer balls", "Telescopes", "Umbrellas", "Violins", "Watermelons", "Xylophones", "Zebras", "Backpacks", "Cameras", "Dinosaurs", "Elephants", "Forks", "Globes", "Hammers", "Insects", "Jeans", "Kites", "Lemons", "Motorcycles", "Necklaces", "Ostriches", "Pizzas", "Roses", "Sunflowers", "Trucks", "Violins", "Wallets", "Yo-yos", "Zucchinis", "Airplanes", "Basketballs", "Carrots", "Dolphins", "Eggs", "Fire extinguishers", "Guitar picks", "Hula hoops", "Ice skates", "Jump ropes", "Koalas", "Lighthouses", "Origami cranes", "Parachutes", "Quilted blankets", "Rocking chairs", "Snorkels", "Tambourines", "Ukuleles", "Vintage watchs", "Wetsuits", "Extendable claws", "Magic eight balls", "Sea urchin shells", "Hourglasses", "Electric eels", "Moon rocks", "Ladders"];
+
+        function generateRandomSetting() {
+            const randomSetting = settings[Math.floor(Math.random() * settings.length)];
+            const settingResult = document.getElementById("settingResult");
+            settingResult.textContent = "";
+            const settingText = document.createElement("p");
+            settingText.className = "result-text";
+            settingText.textContent = randomSetting;
+            settingResult.appendChild(settingText);
+        }
+
+    function generateNarration() {
+        const randomNarration = narrations[Math.floor(Math.random() * narrations.length)];
+        const randomObject = objects[Math.floor(Math.random() * objects.length)];
+        const narrationResult = document.getElementById("audienceResult");
+        narrationResult.textContent = "";
+        const narrationText = document.createElement("p");
+        narrationText.className = "result-text";
+        const replacedNarration = randomNarration.replace('{OBJECT}', `<strong>${randomObject}</strong>`);
+        narrationText.innerHTML = replacedNarration;
+        narrationResult.appendChild(narrationText);
+    }
+
+        function generateObject() {
+            const randomObject = objects[Math.floor(Math.random() * objects.length)];
+            const objectResult = document.getElementById("objectResult");
+            objectResult.textContent = "";
+            const objectText = document.createElement("p");
+            objectText.className = "result-text";
+            objectText.textContent = randomObject;
+            objectResult.appendChild(objectText);
+        }
+
+        document.getElementById("generateSetting").addEventListener("click", generateRandomSetting);
+        document.getElementById("generateNarration").addEventListener("click", generateNarration);
+
+    </script>
+
+    <footer class="navigation"> 
+        <a href="../pages/contact.html">Contact</a>
+        <a href="../pages/about.html">About</a>
+    </footer>
+</body>
+
+</html></body>
+
+</html>

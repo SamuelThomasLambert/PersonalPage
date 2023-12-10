@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/questions100.css">
+    <title>100 Questions</title>
+    <script src="../js/script.js" defer></script>
+<style type="text/css">
+    #checkboxes-container {
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+    <script src="../js/questions100.js"></script>
+    <!-- Container for dynamically generated checkboxes -->
+
+    <header class="navigation"><a href="../index.html"><span class="homeButton"></span></a> &gt; <a href="games.html">Games</a> &gt; <a href="games100Questions.html">100 Questions</a></header>
+    <main>
+
+   <button type="button" id="filter" class="nextBtn" onclick="toggleCheckboxes()"> Filter</button>
+        <div id="checkboxes-container"></div>
+        <div id="group-checkboxes-container"></div>
+        <!-- Button to randomly choose one of the ticked variables -->
+        <div class="randomOutput" id="output">
+            <!-- Display area for the random output -->
+            Click Here
+        </div>
+<input type="file" id="csvFileInput" accept=".csv" />
+
+    <button style="width: 50px; height: 25px; margin: 5px;" onclick="clearPage()">Clear</button>
+        <!-- New button for downloading the template -->
+        <button style="width: 150px; height: 25px; margin: 5px;" onclick="downloadTemplate()">Download Template</button>
+
+        <script>
+
+            function toggleCheckboxes() {
+                const checkboxesContainer = document.getElementById('checkboxes-container');
+                checkboxesContainer.style.display = checkboxesContainer.style.display === 'block' ? 'none' : 'block';
+            }
+
+            function clearPage() {
+                // Reload the current page
+                location.reload();
+            }
+
+            // Function to download the template
+            function downloadTemplate() {
+                const templateData = "Category name 1,Category name 2,Category name 3\nWord class name 1,Word class name 2,Word class name 3\ndata goes here,data 2,data 3";
+                const blob = new Blob([templateData], { type: 'text/csv' });
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = 'template100Questions.csv';
+                link.click();
+            }
+        </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById('csvFileInput').addEventListener('change', handleFileUpload);
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const csvData = e.target.result;
+                    processCsvData(csvData);
+                };
+
+                reader.readAsText(file);
+            }
+        }
+
+        function processCsvData(csvData) {
+            const data = csvData.split('\n').map(row => row.split(','));
+
+            const variables = [];
+            const checkedVariables = [];
+            const headerRow = data[0];
+            const descriptionRow = data[1];
+            const uniqueWordClasses = Array.from(new Set(descriptionRow));
+
+            for (let i = 0; i < headerRow.length; i++) {
+                variables[i] = data.slice(2).map(row => row[i]);
+                checkedVariables[i] = true;
+            }
+
+            const checkboxesContainer = document.getElementById('checkboxes-container');
+            checkboxesContainer.innerHTML = '';
+
+            for (let wordClass of uniqueWordClasses) {
+                const wordClassContainer = document.createElement('div');
+                wordClassContainer.className = 'word-class-container';
+
+                const tickAllContainer = document.createElement('div');
+                tickAllContainer.className = 'tick-all-container';
+
+                const tickAllCheckbox = document.createElement('input');
+                tickAllCheckbox.type = 'checkbox';
+                tickAllCheckbox.className = 'tick-all-checkbox';
+                tickAllCheckbox.id = `tickAllCheckbox-${wordClass.toLowerCase()}`;
+                tickAllCheckbox.addEventListener('change', function () {
+                    const isChecked = this.checked;
+                    wordClassContainer.querySelectorAll('.variable-checkbox').forEach(checkbox => {
+                        checkbox.checked = isChecked;
+                        const index = parseInt(checkbox.id.replace('variable', ''), 10) - 1;
+                        checkedVariables[index] = isChecked;
+                    });
+                });
+
+                const tickAllLabel = document.createElement('label');
+                tickAllLabel.htmlFor = `tickAllCheckbox-${wordClass.toLowerCase()}`;
+                tickAllLabel.textContent = `Tick All ${wordClass}`;
+
+                tickAllContainer.appendChild(tickAllCheckbox);
+                tickAllContainer.appendChild(tickAllLabel);
+
+                wordClassContainer.appendChild(tickAllContainer);
+
+                for (let i = 0; i < headerRow.length; i++) {
+                    if (descriptionRow[i] === wordClass) {
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.className = 'variable-checkbox';
+                        checkbox.id = `variable${i + 1}`;
+                        checkbox.checked = true;
+                        checkbox.addEventListener('change', function () {
+                            checkedVariables[i] = this.checked;
+                            tickAllCheckbox.checked = wordClassContainer.querySelectorAll('.variable-checkbox:checked').length === wordClassContainer.querySelectorAll('.variable-checkbox').length;
+                        });
+
+                        const label = document.createElement('label');
+                        label.htmlFor = `variable${i + 1}`;
+                        label.textContent = headerRow[i];
+
+                        wordClassContainer.appendChild(checkbox);
+                        wordClassContainer.appendChild(label);
+                    }
+                }
+
+                checkboxesContainer.appendChild(wordClassContainer);
+            }
+
+            const tickUntickAllCheckbox = document.createElement('input');
+            tickUntickAllCheckbox.type = 'checkbox';
+            tickUntickAllCheckbox.id = 'tickUntickAllCheckbox';
+            tickUntickAllCheckbox.addEventListener('change', function () {
+                const isChecked = this.checked;
+                document.querySelectorAll('.variable-checkbox').forEach(checkbox => {
+                    checkbox.checked = isChecked;
+                });
+                checkedVariables.fill(isChecked);
+            });
+
+            const tickUntickAllLabel = document.createElement('label');
+            tickUntickAllLabel.htmlFor = 'tickUntickAllCheckbox';
+            tickUntickAllLabel.textContent = 'Tick/Untick All';
+
+            checkboxesContainer.appendChild(tickUntickAllCheckbox);
+            checkboxesContainer.appendChild(tickUntickAllLabel);
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.addEventListener('click', () => {
+                const tickedIndexes = checkedVariables.reduce((acc, isChecked, index) => {
+                    if (isChecked) {
+                        acc.push(index);
+                    }
+                    return acc;
+                }, []);
+
+                if (tickedIndexes.length > 0) {
+                    const randomIndex = tickedIndexes[Math.floor(Math.random() * tickedIndexes.length)];
+                    displayRandomOutput(variables[randomIndex]);
+                }
+            });
+        }
+
+        function getRandomOutput(variable) {
+            let randomIndex;
+            let randomValue;
+
+            do {
+                randomIndex = Math.floor(Math.random() * variable.length);
+                randomValue = variable[randomIndex];
+            } while (!randomValue && checkedVariables.some((isChecked, index) => isChecked && !variables[index][randomIndex]));
+
+            return randomValue;
+        }
+
+        function displayRandomOutput(variable) {
+            const output = getRandomOutput(variable);
+            document.getElementById('output').innerText = output;
+        }
+    });
+</script>
+
+
+
+
+
+
+
+    </main>
+    <footer class="navigation">
+        <a class="blockButton" href="pages/contact.html">Contact</a> <a href="pages/about.html">About</a>
+    </footer>
+
+</body>
+
+</html>

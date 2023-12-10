@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+  <title>Taboo</title>
+  <script src="../js/script.js" defer></script>
+<style type="text/css">
+    #result1 {
+text-align: center;
+    font-size: 2em;
+  margin-top: 10%;
+  border: solid black 1px;
+  border-radius: 5px;
+  padding: 10px;
+    }
+    #result2 {
+font-size: 1.5em;
+    }
+
+</style>
+</head>
+
+
+<body>
+
+    <header class="navigation"><a href="../index.html"><span class="homeButton"></span></a> &gt; <a href="games.html">Games</a> &gt; <a href="gamesTabooImport.html">Taboo</a></header>
+    <main>
+
+<!-- Download Template button -->
+<button class="col-1" onclick="downloadTemplate()">Download Template</button>
+
+<!-- File input for CSV upload -->
+<input class="col-6" type="file" accept=".csv" onchange="handleFileUpload(event); handleImport()">
+
+<!-- Buttons to change row and column -->
+<button onclick="changeRow()" id="newWordButton" disabled>New word</button>
+
+<!-- Result containers -->
+<div class="boxJustifyCenter">
+    <h1 id="result1"></h1>
+</div>
+<div class="boxJustifyCenter">
+    <ul id="result2"></ul>
+</div>
+
+<script>
+    //
+    let rows = [];
+    let prevRandomRowIndex = -1;
+    let prevRandomColumnIndex = -1;
+
+    // Function to display the results
+    function displayResults() {
+        // Result 1: Display only the category
+        document.getElementById('result1').innerHTML = rows[randomRowIndex][0];
+
+        // Result 2: Display all data of the remaining columns (except A) as list items
+        const result2Container = document.getElementById('result2');
+        result2Container.innerHTML = ''; // Clear previous content
+
+        const allDataExceptA = rows[randomRowIndex].slice(1);
+        allDataExceptA.forEach(data => {
+            const listItem = document.createElement('li');
+            listItem.textContent = data.trim();
+            result2Container.appendChild(listItem);
+        });
+    }
+
+    // Function to handle 'Row' button click
+    function changeRow() {
+        randomRowIndex = getRandomRowIndex();
+        while (randomRowIndex === prevRandomRowIndex || randomRowIndex === 0) {
+            randomRowIndex = getRandomRowIndex();
+        }
+        prevRandomRowIndex = randomRowIndex;
+
+        randomColumnIndex = getRandomColumnIndex();
+        displayResults();
+    }
+
+    // Function to handle 'Column' button click
+    function changeColumn() {
+        randomColumnIndex = getRandomColumnIndex();
+        while (randomColumnIndex === prevRandomColumnIndex) {
+            randomColumnIndex = getRandomColumnIndex();
+        }
+        prevRandomColumnIndex = randomColumnIndex;
+
+        displayResults();
+    }
+
+    // Function to handle file input change
+    function handleFileUpload(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const content = e.target.result;
+                rows = content.split('\n').map(row => row.split(','));
+
+                // Remove the first row
+                rows.shift();
+
+                // Remove rows that have empty values in the first column (category)
+                rows = rows.filter(row => row[0].trim() !== '');
+
+                displayResults();
+            };
+
+            reader.readAsText(file);
+        }
+    }
+
+    // Function to get a random row index (excluding empty rows and the first row)
+    function getRandomRowIndex() {
+        const nonEmptyRows = rows.filter((row, index) => index !== 0 && row[0].trim() !== '');
+        return Math.floor(Math.random() * nonEmptyRows.length);
+    }
+
+    // Function to get a random column index (excluding column A and empty columns)
+    function getRandomColumnIndex() {
+        const nonEmptyColumns = rows[randomRowIndex].slice(1).filter(cell => cell.trim() !== '');
+        return Math.floor(Math.random() * nonEmptyColumns.length) + 1; // Adding 1 to account for excluding column A
+    }
+    // Function to download the template file
+    function downloadTemplate() {
+        const templateContent = "Result1,Result2 -->\n"; // Modify as per your template
+        const blob = new Blob([templateContent], { type: 'text/csv' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'template.csv';
+        link.click();
+    }
+
+    // Function to handle 'Import' button click
+    function handleImport() {
+        // Enable the 'New word' button
+        document.getElementById('newWordButton').disabled = false;
+}
+</script>
+
+
+    </main>
+    <footer class="navigation"> 
+        <a href="../pages/contact.html">Contact</a>
+        <a href="../pages/about.html">About</a>
+    </footer>
+</body>
+
+</html>

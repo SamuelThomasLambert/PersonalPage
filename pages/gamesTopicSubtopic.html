@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<title>Games</title>
+  <script src="../js/script.js" defer></script>
+<style type="text/css">
+    #result1 {
+        margin-top: 10%;
+        font-size: 2em;
+    }
+    #result2{
+        font-size: 1.5em;
+    }
+</style>
+</head>
+
+<body>
+        <header class="navigation"><a href="../index.html"><span class="homeButton"></span></a> &gt; <a href="games.html">Games</a> &gt; <a href="gamesTopicSubtopic.html">Topic Subtopic</a></header>
+    <main>
+        <div  class="rowCenter">
+            <h1>Topic Subtopic</h1>
+        </div>
+<div  class="rowSpace">
+<!-- Buttons to change row and column -->
+<button class="col-3" onclick="changeRow()">Change Topic</button>
+<button class="col-3" onclick="changeColumn()">Change subtopic</button>
+<button class="col-3" onclick="window.location.href='gamesTopicSubtopicImport.html'">Import</button>
+</div>
+<div  class="rowCenter">
+    <!-- Result containers -->
+    <div id="result1" onclick="changeRow()">Row</div>
+</div>
+<div  class="rowCenter" onclick="changeColumn()">
+    <div id="result2">Column</div>
+</div>
+    </main>
+    <footer class="navigation"> 
+        <a href="../pages/contact.html">Contact</a>
+        <a href="../pages/about.html">About</a>
+    </footer>
+<script>
+    const csvData = `Technology:,Artificial Intelligence,Blockchain,Virtual Reality,Cybersecurity,Quantum Computing,Internet of Things,Machine Learning,Augmented Reality,3D Printing,Automation
+    Travel:,Adventure Tourism,Sustainable Travel,Cultural Immersion,Ecotourism,Backpacking,Solo Travel,Luxury Travel,Road Trips,Volunteer Tourism,Digital Nomad Lifestyle
+    Health and Wellness:,Meditation,Holistic Nutrition,Fitness Trends,Mental Health Awareness,Yoga,Plant-Based Diets,Alternative Therapies,Mindfulness,Aging Well,Stress Management
+    Science Fiction:,Time Travel,Space Exploration,Artificial Intelligence Ethics,Extraterrestrial Life,Parallel Universes,Dystopian Societies,Genetic Engineering,Futuristic Technology,Virtual Realities,Alien Invasions
+    Space and Astronomy:,Exoplanets,Dark Matter and Dark Energy,Space Colonization,Astrobiology,Space Telescopes,Space Exploration Missions,Black Holes,Cosmology,Meteor Showers and Celestial Events,The Search for Extraterrestrial Intelligence (SETI)
+    Politics:,Geopolitics,Political Polarization,Human Rights,International Relations,Political Economy,Populism,Environmental Policy,Social Justice Movements,Political Communication,Futurism in Politics
+    Psychology:,Positive Psychology,Cognitive Behavioral Therapy,Neuroplasticity,Personality Theories,Cross-Cultural Psychology,Psychopathology,Sports Psychology,Child Development,Emotional Intelligence,Evolutionary Psychology
+    Film and Cinema:,Film Noir,New Wave Cinema,Independent Filmmaking,Virtual Production,Animation Techniques,Film Festivals,Film and Society,Documentary Filmmaking,Sci-Fi Film Tropes,Representation in Film
+    Economics:,Behavioral Economics,Cryptocurrency,Income Inequality,Economic Development,Globalization,Financial Markets,Sustainable Economics,Circular Economy,Universal Basic Income,Economic Impact of Pandemics
+    Social Media:,Influencer Culture,Social Media Marketing,Online Communities,Digital Detox,Cyberbullying,Social Media and Mental Health,Privacy Concerns,TikTok Trends,Social Media Analytics,Ephemeral Content
+    Fashion:,Sustainable Fashion,High Fashion vs. Streetwear,Body Positivity in Fashion,Slow Fashion Movement,Gender Fluid Fashion,Vintage and Retro Trends,Fashion and Cultural Identity,Wearable Technology,Fashion Illustration,Influences of Art in Fashion
+    Education:,Online Learning,Gamification in Education,Project-Based Learning,Inclusive Education,Competency-Based Education,Lifelong Learning,Educational Technology,Global Education Trends,Student Mental Health,Flipped Classroom
+    Sports and Fitness:,Extreme Sports,Sports Psychology,Adaptive Sports,Esports,Sports Nutrition,Strength Training,Marathon Running,Sports Medicine,Team Dynamics,Olympic History
+    Music:,Jazz Fusion,Electronic Dance Music (EDM),World Music,Indie Rock,Classical Crossover,Hip-Hop Evolution,Folk Revival,Experimental Soundscapes,Music Production Techniques,Music and Social Movements
+    Art and Design:,Minimalism,Surrealism,Bauhaus Movement,Pop Art,Typography,Conceptual Art,Street Art,Art Nouveau,User Interface (UI) Design,Sustainable Design
+    History:,Ancient Civilizations,World Wars,Renaissance Era,Industrial Revolution,Cold War,Cultural Revolutions,Age of Exploration,Medieval Times,Revolutionaries and Movements,Colonialism and Imperialism
+    Literature:,Magical Realism,Postmodern Literature,Afrofuturism,Historical Fiction,Graphic Novels,Crime Fiction,Feminist Literature,Queer Literature,Science Fiction in Literature,Nonlinear Narratives
+    Environment and Sustainability:,Climate Change,Renewable Energy,Conservation Biology,Sustainable Agriculture,Green Architecture,Ocean Conservation,Wildlife Preservation,Eco-Friendly Technologies,Circular Economy,Environmental Policy
+    Photography:,Macro Photography,Portrait Photography,Astrophotography,Drone Photography,Street Photography,Time-Lapse Photography,Black and White Photography,Travel Photography,Experimental Photography,Documentary Photography
+    Culinary Arts:,Molecular Gastronomy,Farm-to-Table,Fusion Cuisine,Pastry Arts,Food Pairing,Culinary History,Plant-Based Cooking,International Flavors,Food Sustainability,Gourmet Cooking Techniques`;
+
+    // Parse CSV data into a 2D array
+    const rows = csvData.split('\n').map(row => row.split(','));
+
+    let randomRowIndex = getRandomRowIndex();
+    let randomColumnIndex = getRandomColumnIndex();
+
+    // Function to get a random row index
+    function getRandomRowIndex() {
+        return Math.floor(Math.random() * rows.length);
+    }
+
+    // Function to get a random column index (excluding column A)
+    function getRandomColumnIndex() {
+        return Math.floor(1 + Math.random() * (rows[randomRowIndex].length - 1));
+    }
+
+    // Function to display the results
+    function displayResults() {
+        // Result 1: Display only the category
+        document.getElementById('result1').innerHTML = rows[randomRowIndex][0];
+
+        // Result 2: Display only the corresponding data
+        document.getElementById('result2').innerHTML = rows[randomRowIndex][randomColumnIndex];
+    }
+
+    // Initial display
+    displayResults();
+
+    // Function to handle 'Row' button click
+    function changeRow() {
+        randomRowIndex = getRandomRowIndex();
+        randomColumnIndex = getRandomColumnIndex();
+        displayResults();
+    }
+
+    // Function to handle 'Column' button click
+    function changeColumn() {
+        randomColumnIndex = getRandomColumnIndex();
+        displayResults();
+    }
+</script>
+</body>
+
+</html>
