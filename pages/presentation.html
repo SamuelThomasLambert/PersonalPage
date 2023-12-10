@@ -7,42 +7,6 @@
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <title>Presentation</title>
   <script src="../js/script.js" defer></script>
-<style type="text/css">
-            .slide {
-            display: none;
-        }
-
-.barChart {
-    font-size: .5em;
-    width: 20px;
-    float: left;
-    margin: 5px;
-}
-.barChart136 {
-    height: 5px;
-    background-color: grey;
-}
-.barChart236 {
-    height: 10px;
-    background-color: grey;
-}
-.barChart336 {
-    height: 15px;
-    background-color: grey;
-}
-.barChart436 {
-    height: 20px;
-    background-color: grey;
-}
-.barChart536 {
-    height: 25px;
-    background-color: grey;
-}
-.barChart636 {
-    height: 30px;
-    background-color: grey;
-}
-</style>
 <body>
     <header class="navigation"><a href="../index.html"><span class="homeButton"></span></a> &gt; <a href="presentation.html">presentation</a></header>
     <main>
@@ -66,16 +30,24 @@
                 <li><a href="#slide3" onclick="showSlide(2)">Dice </a></li>
                 <li><a href="#slide4" onclick="showSlide(3)">Cards</a></li>
                 <li><a href="#slide5" onclick="showSlide(4)">Paper materials</a></li>
-                <li><a href="#slide6" onclick="showSlide(5)">Board Game</a></li>
-                <li><a href="#slide7" onclick="showSlide(6)">Summary</a></li>
-        </div>
-        <div style="width: 50%;"> 
+                <li><a href="#slide6" onclick="showSlide(5)">Technology</a></li>
+                <li><a href="#slide7" onclick="showSlide(6)">Existing 3rd Party apps</a></li>
+                <li><a href="#slide8" onclick="showSlide(8)">Future plans and limitations</a></li>
+                <li><a href="#slide8" onclick="showSlide(9)">Summary</a></li>
+            </div>
+        <div onclick="window.open('games.html', '_blank');" style="width: 50%;">
             <h3>Games</h3>
-                <li><a href="#slide8" onclick="showSlide(8)">Question Shuffle</a></li>
-                <li><a href="#slide9" onclick="showSlide(9)">Row and Column (preset)</a></li>
-                <li><a href="#slide10" onclick="showSlide(10)">Row and Column (import)</a></li>
-                <li><a href="#slide11" onclick="showSlide(11)">Ad Battle</a></li>
-                <li><a href="#slide12" onclick="showSlide(12)">Picture Guessing</a></li>
+                <ul>
+                    <li>Fortunately / Unfortunately</a></li>
+                    <li>Taboo</a></li>
+                    <li>Topic, subtopic</li>
+                    <li>100 Questions</li>
+                    <li>100 Questions - Import</li>
+                    <li>Roleplay Narration</li>
+                    <li>picture Guessing</li>
+                </ul>
+
+
         </div>
     </div>
 </section>
@@ -85,8 +57,8 @@
             <h2>Traditional Randomization</h2>
     </div>      
     <div  class="rowCenter">
-        <div style="text-align: center; width: 50%;"> 
-            <img src="../images/introPicture.png" class="col-6">
+        <div  class="rowCenter"> 
+            <img src="../images/introPicture.png" class="slidePictures rowCenter">
         </div>        
         <div style="width: 50%;">
             <p>Traditional means of Randomization:</p>
@@ -97,25 +69,15 @@
             </ul>
         </div>        
     </div>
-    <div  class="rowCenter">
-        <div style="text-align: center; width: 50%;"> 
-            <img src="../images/tShirtsActivity.png" class="col-6">
-        </div>        
-        <div style="width: 50%;">
-            <p></p>
 
-        </div>        
-    </div>
 </section>
 <section id="slide3" class="slide">
     <div class="rowCenter">
             <h2>Dice Activity: Modals of probability</h2>
     </div>      
-    <div class="rowCenter">
-        <div style="text-align: center; width: 50%;">
-            <img src="../images/modalActivity.png" class="col-sm-12 col-md-12 col-lg-12">
-        </div>
-        <div style="width: 50%;">
+    <div  class="rowCenter">
+        <img src="../images/modalActivity.png" class="slidePictures rowCenter">
+    <div style="width: 50%;">
             <p>Instructions</p>
             <ul>
                 <li>Fill in columns with 
@@ -134,26 +96,11 @@
 </section>
 <section id="slide4" class="slide">
     <div class="rowCenter">
-            <h2>Dice probability</h2>
-    </div>      
-    <div class="rowCenter">
-        <div style="text-align: center; width: 40%; border: solid black 1px; border-radius: 10px; margin-right: 10% paddong 10px;">
-           <p>Sum of two dice probability</p>
-            <img src="../images/diceProbability.png" class="col-sm-12 col-md-12 col-lg-12">
-        </div> 
-        <div style="text-align: center; width: 40%;">
-            <p>Board games</p>
-            <img src="../images/diceProbability.png" class="col-sm-12 col-md-12 col-lg-12">
-        </div>
-    </div> 
-</section>
-<section id="slide5" class="slide">
-    <div class="rowCenter">
             <h2>Cards</h2>
     </div>      
     <div class="rowCenter">
         <div style="text-align: center; width: 50%;">
-            <img src="../images/cardActivity.png" class="col-12">
+            <img src="../images/cardActivity.png" class="slidePictures">
         </div>
         <div style="width: 50%;">
             <p>Cards</p>
@@ -170,95 +117,146 @@
     </div>
 </section>
 
-<section id="slide6" class="slide">
-    <h2>Slide 5: Comparative Advantage</h2>
-    <p>Explain how your product stands out from the competition or offers something that no other product can. (think of something similar, how is this better?)</p>
-    <!-- Add content for the fifth slide here -->
+<section id="slide5" class="slide">
+    <div class="rowCenter">
+            <h2>Paper materials</h2>
+    </div> 
+    <div class="rowCenter">
+        <div style="text-align: center; width: 50%;">
+            <img src="../images/tShirtsActivity.png" class="slidePictures">
+        </div>
+        <div style="width: 50%;">
+            <p>Paper materials</p>
+            <ul>
+                <li>T-shirts matching
+                    <ol>
+                        <li>Make a stack of T-shirts face down (column 1)</li>
+                        <li>Scatter the remaining on the table</li>
+                        <li>Students take a T-shirt from the deck and begin to describe it in detail</li>
+                        <li>Other students compete to find the matching T-shirt</li>
+                    </ol>
+                </li>
+            </ul>
+        </div>        
+    </div>
 </section>
 
+<section id="slide6" class="slide">
+    <div class="rowCenter">
+            <h2>Technology</h2>
+    </div> 
+    <div class="rowCenter">
+        <div style="text-align: center; width: 50%;">
+            <img src="../images/code.png" class="slidePictures">
+        </div>
+        <div style="width: 50%;">
+            <p>I will introduce a few ways I have used technology for randomization and how it's helped in class activities</p>
+            <ul>
+                <li>3rd Party websites</li>
+                <li>Random prompts or questions</li>
+                <li>Conditional random, one result dependant on the first</li>
+                <li>Random with filters</li>
+                <li>Import lists</li>
+                <li>Including random elements within other random elements</li>
+                <li>Simplifying complex systems</li>
+                <li>Combining with other technology such as image search</li>
+            </ul>
+        </div>        
+    </div>
+</section>
 <section id="slide7" class="slide">
-    <h2>Slide 7: User Experience</h2>
-    <p>Describe the user experience - how easy and enjoyable it is to use the product.</p>
-    <!-- Add content for the seventh slide here -->
+    <div class="rowCenter">
+            <h2>3rd Party Websites</h2>
+    </div> 
+            <div style="width: 100%;">
+                <p>Some already existing 3rd party apps used in classesinclude Wordwall.</p>
+            </div>
+<div class="rowCenter">
+    <div style="text-align: center; width: 50%;">
+        <img src="../images/thirdPartyApps.png" class="slidePictures">
+        </div>
+    <div class="rowCenter" style="margin: 10px;">
+
+        </div>
+        <div class="rowTop">
+            <div>
+                <h3>Pros</h3>
+                <ul>
+                    <li>Easy to create, low prepearation time</li>
+                    <li>community of sharing</li>
+                    <li>Students can access without accounts</li>
+                    <li>no need to look up a reference</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Cons</h3>
+                <ul>
+                    <li>Limited access for free users</li>
+                    <li>Simple randomisation</li>
+                </ul>
+            </div>        
+        </div>
+    </div>
+</div>
 </section>
 
 <section id="slide8" class="slide">
-    <h2>Slide 8: Demonstration</h2>
-    <p>Mime or draw the product in action. How does it work, and how can it make people's lives easier or more exciting?</p>
-    <!-- Add content for the eighth slide here -->
+<div onclick="window.open('games.html', '_blank');">
+    <div class="rowCenter">
+            <h2>Games</h2>
+    </div>
+    <div>
+                <li>Fortunately / Unfortunately</a></li>
+                <li>Taboo</a></li>
+                <li>Topic, subtopic</li>
+                <li>100 Questions</li>
+                <li>100 Questions - Import</li>
+                <li>Roleplay Narration</li>
+                <li>picture Guessing</li>
+    </div> 
+    </div> 
 </section>
+</section>
+
 
 <section id="slide9" class="slide">
-    <h2>Slide 9: Sensory Appeal</h2>
-    <p>Highlight any sensory experiences related to the product, such as its scent, texture, color, or sound.</p>
-    <!-- Add content for the ninth slide here -->
+    <div class="rowCenter">
+            <h2>Limitations</h2>
+    </div> 
+    <div class="rowCenter">
+        <div style="width: 50%;">
+            <p>Limitations (currrent)</p>
+            <ul>
+                <li>Currently not sharabke</li>
+                <li>Uses code, dificilt to create new games</li>
+                <li>Uploading files is on the local drive</li>
+                <li>Uses a single device that is displayed to all students</li>
+            </ul>
+        </div>
+                <div style="width: 50%;">
+            <p>Future plans</p>
+            <ul>
+                <li>Community sharing for teachers</li>
+                <li>Easier to share with students (QR) without download</li>
+            </ul>
+        </div>           
+    </div>
 </section>
-
 <section id="slide10" class="slide">
-    <h2>Slide 10: Limited-Time Offer</h2>
-    <p>Create a sense of urgency by offering a special limited-time discount or promotion.</p>
-    <!-- Add content for the tenth slide here -->
-</section>
-
-<section id="slide11" class="slide">
-    <h2>Slide 11: Call to Action</h2>
-    <p>Encourage viewers to take action – visit your website, call a hotline, or visit a store to purchase the product.</p>
-    <!-- Add content for the eleventh slide here -->
-</section>
-
-<section id="slide12" class="slide">
-    <h2>Slide 12: Quirky Spokesperson</h2>
-    <p>If applicable, introduce a quirky mascot for your product who can add humor or charm to the advertisement.</p>
-    <!-- Add content for the twelfth slide here -->
-</section>
-
-<section id="slide13" class="slide">
-    <h2>Slide 13: Jingle or Catchphrase</h2>
-    <p>Create a memorable song or catchphrase that will stick in the audience's minds.</p>
-    <!-- Add content for the thirteenth slide here -->
-</section>
-
-<section id="slide14" class="slide">
-    <h2>Slide 14: Gift Ideas</h2>
-    <p>Explain how the product can be a unique and unexpected gift for different occasions.</p>
-    <!-- Add content for the fourteenth slide here -->
-</section>
-
-<section id="slide15" class="slide">
-    <h2>Slide 15: Sustainability</h2>
-    <p>If your product is eco-friendly or has sustainable features, emphasize its positive impact on the environment.</p>
-    <!-- Add content for the fifteenth slide here -->
-</section>
-
-<section id="slide16" class="slide">
-    <h2>Slide 16: Safety and Quality</h2>
-    <p>Highlight any safety certifications or quality guarantees to build trust with potential customers.</p>
-    <!-- Add content for the sixteenth slide here -->
-</section>
-
-<section id="slide17" class="slide">
-    <h2>Slide 17: Local Connection</h2>
-    <p>Share a heartwarming story about the product's local origin or the people behind it.</p>
-    <!-- Add content for the seventeenth slide here -->
-</section>
-
-<section id="slide18" class="slide">
-    <h2>Slide 18: Endorsements</h2>
-    <p>Mention any endorsements or partnerships with relevant influencers, experts, or organizations. (Think of famous people who would advertise it)</p>
-    <!-- Add content for the eighteenth slide here -->
-</section>            <!-- Add content for the third slide here -->
-        </section>
-        <!-- Repeat the pattern for the other slides -->
+    <div class="rowCenter">
+            <h2>Summary</h2>
+    </div> 
+    <div class="rowCenter">
+        <div style="width: 50%;">
+            <ul>
+                <li>Randomization adds variety</li>
+                <li>once implemented, making materials will be faster</li>
+                <li>More variety of functionality using random generation</li>
+                <li>Combine with other technologies</li>
+            </ul>
+        </div>           
     </div>
-<!--
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4 col-sm-6">Col 1</div>
-        <div class="col-md-4 col-sm-6">Col 2</div>
-        <div class="col-md-4 col-sm-6">Col 3</div>
-    </div>
-</div>
--->
+</section>
 </div>
 <div class="boxJustifyCenter">
     <div class="buttonItem col-lg-1 col-md-1 col-sm-1">
