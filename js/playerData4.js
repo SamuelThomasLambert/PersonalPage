@@ -1,0 +1,26 @@
+// playerData4.js
+var playerData = [
+    ['Player', 'Player', 'Player', 'Wolf'],
+    ['Wolf', 'Player', 'Player', 'Player'],
+    ['Player', 'Wolf', 'Player', 'Player'],
+    ['Player', 'Player', 'Player', 'Wolf'],
+    ['Wolf', 'Player', 'Player', 'Player'],
+    ['Player', 'Player', 'Wolf', 'Player'],
+    ['Player', 'Wolf', 'Player', 'Player'],
+    ['Player', 'Player', 'Wolf', 'Player'],
+    ['Player', 'Wolf', 'Player', 'Player'],
+    ['Player', 'Player', 'Player', 'Wolf'],
+    ['Wolf', 'Player', 'Player', 'Player'],
+    ['Player', 'Wolf', 'Player', 'Player'],
+    ['Player', 'Player', 'Player', 'Wolf'],
+    ['Wolf', 'Player', 'Player', 'Player'],
+    ['Player', 'Player', 'Wolf', 'Player'],
+    ['Player', 'Wolf', 'Player', 'Player'],
+    ['Player', 'Player', 'Player', 'Wolf'],
+    ['Wolf', 'Player', 'Player', 'Player'],
+    ['Player', 'Wolf', 'Player', 'Player'],
+    ['Player', 'Player', 'Player', 'Wolf'],
+    ['Wolf', 'Player', 'Player', 'Player'],
+    ['Player', 'Player', 'Wolf', 'Player'],
+    ['Player', 'Wolf', 'Player', 'Player']
+];
