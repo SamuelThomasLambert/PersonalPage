@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/questions100.css">
+    <script src="../js/script.js" defer></script>
     <title>100 Questions</title>
-    <script src="js/script.js" defer></script>
 <style type="text/css">
     #checkboxes-container {
         display: none;
@@ -184,6 +184,8 @@
                             label.htmlFor = `variable${i + 1}`;
                             label.textContent = headerRow[i];
                             categoriesDiv.appendChild(label);
+                            // Add a line break after each checkbox and label
+                            categoriesDiv.appendChild(document.createElement('br'));
                         }
                     }
                 });
