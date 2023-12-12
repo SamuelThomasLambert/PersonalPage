@@ -1,3 +1,5 @@
+<!-- clear textbox when press restart -->
+
 <!DOCTYPE html>
 <html>
 
@@ -5,9 +7,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <title>Games</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/questions100.css">
     <script src="../js/script.js" defer></script>
+    <title>Games</title>
 </head>
 <style type="text/css">
 
@@ -79,6 +82,7 @@ footer {
             <li>Click the 'Get picture' Button</li>
         </ol>
         <div id="generate-image" onclick="showSlide(1)" class="bigButton colorSection col-12 pointer"> Get Picture</div>
+        <div id="prevBtn" class="slideNavigation colorSection col-4 pointer" onclick="showSlide(1)">back</div>
 </section>
 <section id="slide2" class="slide" style="height: 150%;">
         <div id="image-container">
@@ -94,11 +98,13 @@ footer {
                 <li>Press 'Go'</li>
             </ol>
             <textarea id="description" rows="4" cols="50" placeholder="Enter a description..."></textarea>
-            <p>Set time limit</p>
+<!--            <p>Set time limit</p>
             <input type="number" id="minutesInput" placeholder="Set minutes" value="2">
             <input type="number" id="secondsInput" placeholder="Set seconds" value="0">
+        -->
         </div>
                 <button id="go-button" class="bigButton" onclick="showSlide(1)">Go</button>   
+                <div id="prevBtn" class="slideNavigation colorSection col-4 pointer" onclick="showSlide(1)">back</div>
 </section>
 <section id="slide3" class="slide" style="height: 200vh;"> 
 
@@ -117,22 +123,22 @@ footer {
                 <li><b>Advanced:</b> No questions about appearance or content. instead you can ask something like 'What's a memory you associate with this picture?'</li>
             </ul>
         </div>
-        <div class="timer col-sm-12 col-md-6 col-lg-6">    
+<!--        <div class="timer col-sm-12 col-md-6 col-lg-6">    
 
                 <p>Time remaining.</p>
                 <div id="timer">02:00</div>
                 <button onclick="stopTimer()">Stop</button>
                 <p>To start a new game, press the "Get picture" button.</p>
-        </div>
+        </div> -->
     </div>
         <div id="search-results" style="display: none;">
             <!-- Results will be populated here -->
         </div>
-        <!-- timer input and display -->
 
-    <button id="restart-button" onclick="showSlide(-currentSlide + 1)" >Restart</button>  
-</section>
+    <button id="restart-button" onclick="showSlide(-currentSlide + 1)" style="margin-top: 20px;" >Restart</button>  
         <div id="prevBtn" class="slideNavigation colorSection col-4 pointer" onclick="showSlide(1)">back</div>
+</section>
+
 <script>
     // JavaScript for showing slides...
     let currentSlide = 1;
@@ -164,8 +170,8 @@ footer {
             const descriptionInput = document.getElementById('description');
             const searchResults = document.getElementById('search-results');
             const goButton = document.getElementById('go-button');
-            let timer;
-            let totalSeconds = 120;
+//            let timer;
+ //           let totalSeconds = 120;
 
 
             generateImageButton.addEventListener('click', () => {
@@ -222,7 +228,7 @@ footer {
                 }
             }
 
-            function startTimer() {
+/*            function startTimer() {
                 const minutesInput = parseInt(document.getElementById('minutesInput').value);
                 const secondsInput = parseInt(document.getElementById('secondsInput').value);
 
@@ -361,10 +367,11 @@ function showPopup() {
         </script>
     </main>
     <p class="space"></p>
-    <footer class="navigation">
+<!--    <footer class="navigation">
         <a href="../pages/contact.html">Contact</a>
         <a href="../pages/about.html">About</a>
     </footer>
+-->
 </body>
 
 </html>
