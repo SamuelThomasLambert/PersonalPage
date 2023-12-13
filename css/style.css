@@ -404,3 +404,16 @@ justify-content: center;
 .slide {
 display: none;
 }
+
+/* Analogies */
+.hidden {
+display: none;
+}
+.results{
+  margin: 10px;
+  font-size: 1.5em;
+}
+.contentList {
+padding: 10px;
+font-size: 1.2em;
+}
