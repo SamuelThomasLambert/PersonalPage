@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/questions100.css">
+    <script src="../js/script.js" defer></script>
+    <title>Analogies</title>
+</head>
+<body>
+<header class="navigation">
+    <a href="../index.html"><span class="homeButton"></span></a> &gt; <a href="games.html">Games</a> &gt; <a href="gamesAnalogies.html">Analogies</a>
+</header>
+<main>
+
+    <div class="results" onclick="toggleContent()">
+        <p>
+            <span id="result1"></span>
+            <span id="result2"></span>
+        </p>
+    </div>
+    <div id="contentList" class="contentList hidden"></div>
+
+
+    <button onclick="toggleContent2()"> Show hints</button>
+    <button onclick="toggleContent()">Solution</button>
+    <button onclick="randomizeColumns()">New Analogy</button>
+
+    <!-- Embedding CSV data -->
+<script src="../js/analogies.js"></script>
+
+<script>
+    const rows = csvData.split('\n');
+    let currentRow;
+
+    function randomizeColumns() {
+        currentRow = rows[Math.floor(Math.random() * rows.length)];
+        const columns = currentRow.split(', ');
+
+        document.getElementById('result1').innerHTML = ` ${columns[0].replace(/\{(.*?)\}/, '$1')}`;
+        document.getElementById('result2').innerHTML = `as ${columns[1].replace(/\{(.*?)\}/, '<span class="hidden">$1</span>')}`;
+
+        // Clear content list
+        contentList.innerHTML = '';
+
+        // Display content inside curly brackets for every column in the same row
+        columns.forEach(column => {
+            const content = column.match(/{(.*?)}/);
+            if (content) {
+                const contentValue = content[1];
+                const listItem = document.createElement('li');
+                listItem.textContent = `${contentValue}`;
+                contentList.appendChild(listItem);
+            }
+        });
+    }
+
+    function toggleContent() {
+        const content2 = document.querySelector('#result2 .hidden');
+        content2.classList.toggle('hidden');
+    }
+
+
+
+        function toggleContent2() {
+        const contentList = document.getElementById('contentList');
+        contentList.classList.toggle('hidden');
+    }
+
+</script>
+</main>
+<footer class="navigation"> 
+    <a href="../pages/contact.html">Contact</a>
+    <a href="../pages/about.html">About</a>
+</footer>
+</body>
+</html>
