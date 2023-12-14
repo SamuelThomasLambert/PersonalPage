@@ -20,7 +20,7 @@ deer,cycling,scientist,pomegranate,thoughtful,striped,finer,travel,express,admir
 gazelle,football,painter,melon,lonely,striped,wilder,discover,converse,appreciate,roam,island,Italy,Carriage,tie,hair,trumpet,coast,.
 lemur,badminton,engineer,blueberry,surprised,yellow,calmest,observe,share,happy,climb,harbor,Spain,Truck,gloves,foot,guitar,beach,.
 snake,squash,dentist,kiwi,ecstatic,shiny,larger,jump,write,adore,crawl,jungle,Germany,Scooter,sunglasses,arm,harp,desert,.
-batminton,surfing,programmer,pear,frustrated,dark,calmer,read,communicate,love,slide,canyon,Brazil,Convertible,jacket,leg,violin,meadow,.
+bat,surfing,programmer,pear,frustrated,dark,calmer,read,communicate,love,slide,canyon,Brazil,Convertible,jacket,leg,violin,meadow,.
 panda,archery,teacher,blueberry,hopeful,tiny,smoother,dance,talk,appreciate,skip,peak,Japan,Bus,tshirt,hair,trumpet,sky,.
 wolf,swimming,artist,pomegranate,serene,colorful,quicker,swim,sing,enjoy,jump,lake,Italy,Scooter,sunglasses,foot,accordion,field,.
 cheetah,volleyball,nurse,banana,thoughtful,gray,longer,run,express,comfort,stroll,valley,Spain,Car,scarf,hand,flute,river,.
@@ -38,7 +38,7 @@ dolphin,snowboarding,writer,grapefruit,lonely,black,wilder,sleep,observe,admire,
 rhinoceros,skiing,painter,pineapple,embarrassed,striped,finer,dance,inquire,delight,roam,,,,,,,,.
 lemur,football,actor,burger,shocked,ugly,braver,play,express,appreciate,climb,,,,,,,,.
 snake,swimming,plumber,pear,elated,shiny,skinnier,study,speak,love,walk,,,,,,,,.
-batminton,squash,firefighter,orange,hopeful,tiny,calmer,run,ask,hate,slide,,,,,,,,.
+bat,squash,firefighter,orange,hopeful,tiny,calmer,run,ask,hate,slide,,,,,,,,.
 panda,basketball,teacher,kiwi,ecstatic,plain,slower,cook,talk,enjoy,jump,,,,,,,,.
 wolf,tennis,lawyer,blueberry,sad,colorful,shorter,swim,tell,dislike,stroll,,,,,,,,.
 `
