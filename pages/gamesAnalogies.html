@@ -1,3 +1,17 @@
+<!-- change buttons to have correct or incorrect guess, like flashcards. (maybe a point system with hints) 2 pt, no hint- 1 pt with hint)
+
+show analogy:
+
+hint -1 pt, solution: may need to disable button after click so only used once
+
+once hit solution
+incorrect (0pt) correct (1pt)
+
+as now is ok 
+
+add button to link to import page
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,38 +19,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/questions100.css">
     <script src="../js/script.js" defer></script>
     <title>Analogies</title>
+<style type="text/css">
+	.buttons button{
+		width: 30%;
+	}
+	#result2 span {
+		font-weight: bold;
+		color: red;
+	}
+	.topSection {
+		text-align: center;
+	}
+.results, .gameOverBox {
+	padding: 20px;
+	border: solid black 1px;
+	border-radius: 10px;
+	height: 50vh;
+	background-color: white;
+  	margin: 10px;
+  	font-size: 1.5em;
+}
+</style>
 </head>
 <body>
 <header class="navigation">
     <a href="../index.html"><span class="homeButton"></span></a> &gt; <a href="games.html">Games</a> &gt; <a href="gamesAnalogies.html">Analogies</a>
 </header>
 <main>
-
-    <div class="results" onclick="toggleContent()">
+<div class="topSection">
+<h1>Analogies</h1>
+</div>
+<section class="game">
+    <div class="results">
         <p>
             <span id="result1"></span>
             <span id="result2"></span>
         </p>
-    </div>
-    <div id="contentList" class="contentList hidden"></div>
+    	<div id="contentList" class="contentList hidden"></div>
+	</div>
+	<div class="buttons rowSpace">
+	    <button onclick="toggleContentList()" class="yellowBG"><span id="info" style="display: block;"></span>Hints</button>
+	    <button onclick="toggleContent()" class="redBG"><span id="show" style="display: block;"></span>Solution</button>
+	    <button onclick="randomizeColumns(), hideContentList()" class="greenBG"><span id="nextBtn" style="display:block;"></span>Next</button>
+	</div>
+	    <!-- Embedding CSV data -->
+</section>
+<section class="gameOver hidden">
+	<div class="gameOverBox">
+		<div>
+			<div class="rowCenter">
+				<h1>Game over</h1>
+			</div>
+			<div class="rowCenter">
+				<button class="col-4 greenBG" onclick="refresh()"><span id="repeat" style="display: block;"></span>Restart</button>
+			</div>
+		</div>
+	</div>
+</section>
+    <script src="../js/analogies.js"></script>
 
-
-    <button onclick="toggleContent2()"> Show hints</button>
-    <button onclick="toggleContent()">Solution</button>
-    <button onclick="randomizeColumns()">New Analogy</button>
-
-    <!-- Embedding CSV data -->
-<script src="../js/analogies.js"></script>
-
-<script>
+ <script>
     const rows = csvData.split('\n');
+    let usedRows = [];
     let currentRow;
 
     function randomizeColumns() {
-        currentRow = rows[Math.floor(Math.random() * rows.length)];
+        let nonEmptyRows = rows.filter(row => row.trim() !== '');
+
+        // Exclude rows that have been used
+        let availableRows = nonEmptyRows.filter(row => !usedRows.includes(row));
+
+        if (availableRows.length === 0) {
+            // All rows have been used, show game over section
+            document.querySelector('.game').classList.add('hidden');
+            document.querySelector('.gameOver').classList.remove('hidden');
+            return;
+        }
+
+        currentRow = availableRows[Math.floor(Math.random() * availableRows.length)];
+        usedRows.push(currentRow);
+
         const columns = currentRow.split(', ');
 
         document.getElementById('result1').innerHTML = ` ${columns[0].replace(/\{(.*?)\}/, '$1')}`;
@@ -58,18 +122,25 @@
     }
 
     function toggleContent() {
-        const content2 = document.querySelector('#result2 .hidden');
-        content2.classList.toggle('hidden');
+        const contentList = document.querySelector('#result2 .hidden');
+        contentList.classList.toggle('hidden');
     }
 
-
-
-        function toggleContent2() {
+    function toggleContentList() {
         const contentList = document.getElementById('contentList');
         contentList.classList.toggle('hidden');
     }
 
+    function hideContentList() {
+    const contentList = document.getElementById('contentList');
+    contentList.classList.add('hidden');
+    }
+
+    function refresh() {
+        location.reload();
+    }
 </script>
+
 </main>
 <footer class="navigation"> 
     <a href="../pages/contact.html">Contact</a>
