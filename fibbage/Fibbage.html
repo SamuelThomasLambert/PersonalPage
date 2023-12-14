@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibbage</title>
+    <style>
+        body {
+  			font-family: "Courier New", Courier, monospace;
+            margin: 40px;
+			background-image: url('backgroundPaper.AVIF');
+			font-size: 20px;
+			text-align: center;
+        }
+
+        #question-container {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            	cursor: pointer;
+        }
+
+		div {
+		font-size: 30px;
+		}
+
+		h1 {
+		font-size: 3em;
+		}
+
+        .leftIndent {
+        	text-align: left;
+        	position: relative;
+        	left: 20%;
+		}
+		.small {
+			font-size: 20px;
+		}
+
+		.pointer {
+        	cursor: pointer;		
+		}
+
+    </style>
+</head>
+<body>
+		<p>
+	<img onclick="generateQuestion()" class="pointer" src="liar.png" height="150" >
+	</p>
+
+
+    <div class="poiner" id="question-container" onclick="generateQuestion()">
+        <p id="question" >Press the LIAR button to see the prompt.</p>
+    </div>
+
+    <script>
+        function generateQuestion() {
+            var questions = [
+				"What is the strangest food combination you've ever tried?",
+				"What's the most embarrassing thing you've done in public?",
+				"What's the most unusual pet you've ever owned or wanted to own?",
+				"What's the most embarrassing nickname you've ever had?",
+				"What's the weirdest place you've ever fallen asleep?",
+				"What's the most unusual talent or skill you possess?",
+				"What's the most embarrassing thing you've ever said to someone you had a crush on?",
+				"What's the strangest dream you've ever had?",
+				"What's the most embarrassing fashion trend you've ever followed?",
+				"What's the most unusual item you've ever found in your pocket or bag?",
+				"What's the most embarrassing thing you've ever done on a date?",
+				"What's the most bizarre or unconventional hobby you've ever had or wanted to try?",
+				"What's the most unusual or memorable gift you've ever received?",
+				"What's the weirdest or most unique tradition you've ever participated in or witnessed?",
+				"What's the strangest or most unconventional place you've ever taken a nap?",
+				"What's the silliest thing you've ever done to impress someone?",
+				"What's the weirdest thing you've ever caught yourself daydreaming about?",
+				"What's the weirdest talent you have that not many people know about?",
+				"What's the silliest fear you've ever had as a child or even as an adult?",
+				"What's the most ridiculous thing you've ever bought online?",
+				"What's the most outrageous outfit you've ever worn to a party or event?",
+				"What's the most embarrassing thing you've ever accidentally texted to the wrong person?",
+				"If you were a professional clown, what would be your signature trick or act?",
+				"What's the weirdest or most unusual thing you've ever collected?",
+				"What's the strangest or most amusing nickname you've ever been given?",
+				"What's the most ridiculous fashion trend you've ever tried to pull off?",
+				"What's the silliest lie you've ever told to get out of a situation?",
+				"What's the strangest or most hilarious dream you've ever had?",
+				"What's the funniest misunderstanding or miscommunication you've ever witnessed or been a part of?",
+				"Which celebrity would you like to physically fight?",
+				"You’ve had a cruddy week. What’s something little you treat yourself to?",
+				"What’s something that’s fairly popular, but you don’t understand why?",
+				"What’s something you were told as a child that you’ve recently learned isn’t quite true?",
+				"What’s something you would like to do? Like something you would give ANYTHING to do?",
+				"Of all your ideas, which one is most likely to make you a million dollars?",
+				"What is your ideal afterlife full of?",
+				"What useless talent (skill, hobby, etc) have you mastered?",
+				"Everybody has an unimportant but controversial take that is fairly unpopular with their friends.... what is yours",
+				"What is a a birthday gift you once got that you still love to this day?",
+				"Think of a recent white lie you feel a little guilty about telling... what did it involve?",
+				"What’s the best part - best snack, movie moment, etc. - of going to the movies?",
+				"Think of a really bad excuse someone has used to cancel plans — a date, a party, etc — which one stands out as particularly silly or hard to believe?",
+				   "What’s a favor you secretly love doing for others?",
+				"If you were to have kids, they can be anything they want when they grow up EXCEPT....",
+				"When you’re dating someone new, you will do anything for love, but you won’t do... what?",
+				"What is a word or phrase that you would HATE to have whispered in your ear? One that would make your hair stand on end.",
+				"What is your go-to hangover cure, or at least something that makes you feel better?",
+				"What’s the best purchase you’ve made recently that was under $20?",
+				"What’s a word or phrase you use WAY too much?",
+				"Think of a cringey moment from your life that still bothers you, what did it involve?",
+				"What must a perfect night in include?",
+				"In your opinion, people should spend less time...",
+				"Name one special thing about your hometown",
+				"If you had to sum up your whole life in two words to be written on your tombstone, what would they be?",
+				"What’s a book from your childhood you’ve probably read more than once?",
+				"What piece of clothing or accessory makes you feel super confident or - at least - more confident?",
+				"If you met an alien, what one item would you gift them to show off humanity?",
+				"If we threw one right now, what would you bring to a white elephant gift exchange? (Can’t think of anything? Just write the last weird gift you bought)",
+				"If you had to eat your way through a mountain made of one food, what food would you choose?",
+				"What’s a hobby you’ve never tried but would like to?",
+				"Where is a place where everybody knows your name?",
+				"What’s one of the most important things you learned in kindergarten? Something you still remember?",
+				"What’s a smell most people enjoy, but you’ve never been a fan of?",
+				"What’s a weird thing you’re scared of? (Something most people do not find scary)",
+				"If you had to start a podcast, what would you talk about?",
+				"What is something your remember from one of your better birthday parties (locations, activity, etc)?",
+				"If you could keep any one animal as a pet, which would you choose?",
+				"How would you finish this sentence? I’m proud of my....",
+				"What’s something you look for in a life partner - romantic or platonic?",
+				"If you had to adopt an everyday smell as your signature scent, what would you choose?",
+				"What’s a quick piece of advice that’s always stuck with you?",
+				"What’s something on your bucket list?",
+				"What job would you perform in a post-apocalyptic society?",
+				"What’s a goof you made around an attractive person, perhaps while trying to ask them out or on a first date?",
+				"What is something you will NEVER put in your mouth again!",
+				"Think of a weird/harmless superstition you had as a kid... what did it involve?",
+				"If you won an award, who would you DEFINETLY mention in your acceptance speech.",
+				"If we all move to future colonies on MARS, what will you miss most about Earth?",
+				"What’s a topic you could give a two hour TED Talk on?",
+				"What’s something you enjoy at least once a week... as a form of self care?",
+				"What’s one way you give back to your community?",
+				"What’s something people assume about you when they first meet you?",
+				"What would your cool Top Gun-style nickname be? (Can be a nickname you tried to get going at one point)",
+				"What’s a business you have saved on your phone? (Or should have because you use it so often)",
+				"What’s the last thing you had delivered to your house?",
+				"What’s something you can’t go a single day without doing, eating, watching, etc.?",
+				"What’s something you’ve placed in a time capsule OR something you would like to put in a time capsule?",
+				"If you were a Greek god, what would you want to be the god of?",
+				"If you were running for president, your campaign slogan would be ______ for Everyone.",
+				"What’s a hobby you’ve always want to take up?",
+				"If there were a dish named after you, what is an ingredient that would absolutely have to be in it?",
+				"If you could get away with it... what is something you would steal?",
+				"When you want to show someone affection, your love language usually involves... what?",
+				"What is the scariest wild animal you believe you could take in a fight?",
+				"What’s a TV show you constantly quote?",
+				"You’re at your favorite buffet, what is the best part?",
+				"What’s something fun you did last weekend, big or small?",
+				"If you HAD to propose marriage in public, where would you do it?",
+				"Where were you when you had a supernatural, or at the very least a VERY spooky, experience?",
+				"What two items would go on your family crest?",
+				"If you could see ANY musician in concert tonight, who would you pick?",
+				"If you could cancel one event forever, which one would you pick?",
+				"What’s a game you always win?",
+				"When you were a child, what did you want to be when you grew up?",
+				"What’s a disappointing gift you once received?",
+				"What’s a dealbreaker you have when it comes to dating that most people wouldn’t mind?",
+				"What’s something on your resume that is a lie, or at least isn’t ENTIRELY true?",
+				"You just found $100 and need to donate it to a charity. Which one are you picking?",
+				"What’s a sound that you find soothing?",
+				"If you could design a new phone app, what would you want it to do?",
+				"Fill in the blank: In my friend group, I’m known as the _______ one.",
+				"What’s something that makes you crack up everytime you see it?",
+				"What fictional character do you really feel sorry for? One that you felt had a really rough time? Or the one that makes you cry?",
+				"If you had the name the one movie that had the biggest influence on your look - or at least the first movie that made you think about your clothes - what would it be?",
+				"If you had to be trapped in a building, business or attraction for 48 hours... where would you like it to be?",
+				"If you had really fun kid PJs, what character/animal/etc. would you like to dress as when you go to bed?",
+				"What’s a question you never want to know the answer to?",
+				"If you were to start a cult, what one thing or concept would your belief system be based on?",
+				"What's the scariest thing you could hear as you were falling asleep?",
+				"What’s the first thing you ever remember lying about?",
+				"If you had to switch places with a literary protagonist, which book would be better with you in it?",
+				"If you were an article of clothing, what would you be?",
+				"Imagine you were a musical. What would your big final number HAVE to include?",
+				"The last time you did a really big cleaning project, what were you really hesitant to throw out?",
+				"When was the last time you cheated or were tempted to cheat?",
+				"What is something that you half-assed that you really wish you had full-assed?",
+				"What is a dish you make you feel is uniquely yours? (Because you make it all the time or add something special to the recipe?)",
+				"What is a simple task you ALWAYS nail perfectly?",
+				"What toy should every kid have at some point in their life?",
+				"What is something - even if it’s small - that makes you optimistic about the future?",
+				"What was featured in one of the better dreams you can remember having?",
+				"When you were bored in school, what would you usually daydream about?",
+				"What’s a job you ALMOST had - one you wanted at one time or interviewed for - but ultimately didn’t get?",
+				"What’s a compliment you’ve received that really stuck with you? What did they say?",
+				"What’s a really odd red flag you noticed when meeting a new person on a date, at a party, etc.?",
+				"Where was the oddest place you’ve ever had a VERY serious conversation with a parent?",
+				"Think of a moment where you acted somewhat - or very - heroic... name one element of that story?",
+				"What minor vice or old habit was fairly difficult for you to give up?",
+				"What movie did you never finish, walked out of the theater, turned off halfway through, etc., because you really couldn't finish it",
+				"You can party at one celebrity or famous figure’s house, who are you picking?",
+				"What was the last thing you fixed, repaired, put together, etc?",
+				"What children’s character has your energy? (Looks like you, acts like you, etc.)",
+				"What is a machine, device or tool you can operate like a pro?",
+				"What was the last thing that made you scream, or at least GASP, out loud?",
+				"Think about something REALLY creepy you found in an antique store, garage sale or thrift shop... what was it?",
+				"What’s an item of clothing you’ve held onto for way too long?",
+				"What Olympic sport do you think you’d be pretty good at?",
+				"What do you usually bring to a potluck?",
+				"What food is a must-have on a road trip?",
+				"Be honest, where’s the place that your friends love to go... but you’re really not a fan?",
+				"If you were a drag queen, what would your name be?",
+				"What is your go-to meal when nobody else is around?",
+				"If your life were a movie, what would be the tagline written on the poster?",
+				"What would you love getting a lifetime supply of?",
+				"What’s your dream vacation destination? (ANYTHING is possible)",
+				"If a wizard gave you $300 that MUST be spent soon or it disappears, what would you rush out to buy?",
+				"A sure fire phrase that would cheer you up is \"{{BLANK}}\".",
+				"In your opinion, what would be the worst part of being President?",
+				"What do you NEVER want to see again?",
+				"If you were to pursue a second career, which one would you be great at?",
+				"If you had to change your name right now, what new name would you pick?",
+				"Imagine you were given a VERY intelligent dog (that can learn anything). What would you teach it to do?",
+				"If you could be any animal for one day, which one would you be?",
+				"Where is the most public place you’ve ever... gone potty?",
+				"What is a song you would pay good money to never hear again?",
+				"What’s something you listen to when you need to boost your confidence?",
+				"What’s one of the odder insults you’ve ever had hurled your way?",
+				"Where do you see yourself in five years?",
+				"Have you ever traveled to a country without knowing the language?",
+"Did you ever try a food that you thought you would hate but ended up loving?",
+"Have you ever been part of a surprise marriage proposal?",
+"Did you ever get lost in a city and had to rely on strangers for directions?",
+"Have you ever met someone famous by chance?",
+"Did you ever spend an entire day without using any technology?",
+"Have you ever organized a spontaneous road trip with friends?",
+"Did you ever participate in a community service project?",
+"Have you ever tried a daring adventure sport like rock climbing or paragliding?",
+"Did you ever attend a major sports event, like the Super Bowl or the World Cup?",
+"Have you ever had a chance encounter with a childhood friend you lost touch with?",
+"Did you ever go camping in the wilderness with no modern amenities?",
+"Have you ever found a message in a bottle or a hidden treasure?",
+"Did you ever win a contest or competition with an unexpected talent?",
+"Have you ever taken a last-minute unplanned trip to a foreign country?",
+"Did you ever spend a night in a supposedly haunted location?",
+"Have you ever cooked a meal using ingredients you grew or foraged yourself?",
+"Did you ever help a stranger in need without expecting anything in return?",
+"Have you ever performed on stage, whether in a play or a talent show?",
+"Did you ever accidentally send a text or email to the wrong person with humorous consequences?",
+"Have you ever navigated through a city using only a paper map?",
+"Did you ever witness a natural phenomenon, like the Northern Lights?",
+"Have you ever successfully surprised someone with a gift or event?",
+"Did you ever get caught in a rainstorm without any shelter?",
+"Have you ever taken a spontaneous midnight stroll in an unfamiliar city?",
+"Did you ever adopt a pet on a whim?",
+"Have you ever attended a masquerade or costume party in an elaborate outfit?",
+"Did you ever make a significant decision based on the flip of a coin?",
+"Have you ever had a meaningful conversation with a stranger on public transportation?",
+"Did you ever participate in a flash mob or impromptu street performance?",
+"Have you ever explored an abandoned building or location?",
+"Did you ever volunteer for a cause that you initially knew little about?",
+"Have you ever tried a food challenge, like eating extremely spicy peppers?",
+"Did you ever accidentally witness a proposal or a wedding?",
+"Have you ever slept under the stars with no tent?",
+"Did you ever attend a cultural festival celebrating a tradition different from your own?",
+"Have you ever gone on a solo backpacking trip in a remote area?",
+"Did you ever make a friend during a long layover at an airport?",
+"Have you ever been part of a random act of kindness chain?",
+"Did you ever attend a live performance without knowing anything about the artist?",
+"Have you ever joined a group or club with a unique or unusual interest?",
+"Did you ever rescue an animal in distress?",
+"Have you ever learned a new skill or hobby on a whim?",
+"Did you ever witness an unexpected act of bravery or heroism?",
+"Have you ever attended a party where you didn't know anyone and made new friends?",
+"Did you ever participate in a protest or march for a cause you believe in?",
+"Have you ever experienced a cultural celebration in a foreign country?",
+"Did you ever take a spontaneous detour during a road trip that led to an amazing discovery?",
+"Have you ever received a gift from a stranger?",
+"Did you ever spend a day completely off the grid, away from technology and social media?",
+"Did you ever go bungee jumping off a bridge?",
+"Have you ever accidentally locked yourself out of your own house?",
+"Did you once eat an entire cake by yourself in one sitting?",
+"Have you ever won a game of bingo at a local community center?",
+"Did you ever pretend to be someone else to get out of trouble?",
+"Have you ever found a hidden treasure while digging in your backyard?",
+"Did you once convince your friends you had a pet dragon as a child?",
+"Have you ever gone on a spontaneous road trip with no destination in mind?",
+"Did you ever fib about your age to get into a movie or an event?",
+"Have you ever broken a window while playing a sport?",
+"Did you once accidentally send a text meant for someone else to your boss?",
+"Have you ever successfully pulled off a surprise party for a friend?",
+"Did you ever claim to have met a famous person when you really hadn't?",
+"Have you ever been mistaken for someone else in public?",
+"Did you once eat something bizarre, like a deep-fried insect, on a dare?",
+"Have you ever faked being sick to get out of work or school?",
+"Did you ever hide from someone in a grocery store to avoid a conversation?",
+"Have you ever had a paranormal experience, like seeing a ghost?",
+"Did you ever accidentally dye your hair a color you didn't intend to?",
+"Have you ever joined a flash mob on a whim?",
+"What's the most memorable meal you've ever had, and where did you eat it?",
+"When was the last time you stepped out of your comfort zone, and what did you do?",
+"Where would you go if you could take a spontaneous vacation right now, and why?",
+"What's the most interesting cultural event or festival you've attended, and where was it?",
+"When did you last learn something new, and what was it?",
+"Where is your favorite spot to unwind and relax, and what makes it special?",
+"What's the most challenging hike or adventure you've been on, and where was it?",
+"When did you realize you had a passion for a particular hobby, and what is that hobby?",
+"Where do you see yourself in five years, and what steps are you taking to get there?",
+"What's the most fascinating piece of trivia or information you've come across recently?",
+"When did you last have a meaningful conversation with a stranger, and what was it about?",
+"Where would you choose to live if you could pick any city in the world, and what draws you to that place?",
+"What's the best book you've read recently, and why did it leave an impression on you?",
+"When did you last attend a live performance, and what was the highlight of the show?",
+"Where do you go to find inspiration or recharge your creative energy?",
+"What's the most surprising place you've encountered a friend unexpectedly, and when was it?",
+"When did you last try a new activity or hobby, and what motivated you to give it a shot?",
+"Where is the most unique or unusual place you've spent the night, and what was the experience like?",
+"What's the most beautiful natural landscape you've ever witnessed, and when were you there?",
+"When did you last contribute to a cause or charity, and what inspired you to get involved?"
+            ];
+
+            var randomIndex = Math.floor(Math.random() * questions.length);
+            var randomQuestion = questions[randomIndex];
+            document.getElementById("question").innerHTML = randomQuestion;
+        }
+
+    </script>
+<div class="leftIndent small">
+
+	<p>	
+		Press the button
+	</p>
+ 
+	<p>	
+		Think of an answer thats either truth or a lie
+	</p>
+ 	
+	<p>	
+		The first person to think of an answer choose a card from their hand,	
+	</p>
+
+	<p>
+		A number card for a lie and a face card for the truth.
+	</p>
+	<p>
+		Answer the question
+	</p>
+	<p>
+		Other players try to guess if it's true or a lie
+	</p>
+
+	<p class="subtle">
+		The player who answered the previous question cannot answer again for 1 round
+	</p>
+
+
+ </div>
+
+</body>
+</html>
