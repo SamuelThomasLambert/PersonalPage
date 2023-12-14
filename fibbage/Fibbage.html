@@ -37,16 +37,19 @@
 		.pointer {
         	cursor: pointer;		
 		}
-
+.centerText {
+			text-align: center;
+}
     </style>
 </head>
 <body>
+<div class="rowCenter">
 		<p>
 	<img onclick="generateQuestion()" class="pointer" src="liar.png" height="150" >
 	</p>
+</div>
 
-
-    <div class="poiner" id="question-container" onclick="generateQuestion()">
+    <div class="poiner centerText" id="question-container" onclick="generateQuestion()">
         <p id="question" >Press the LIAR button to see the prompt.</p>
     </div>
 
