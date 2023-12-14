@@ -316,10 +316,22 @@
 "When did you last contribute to a cause or charity, and what inspired you to get involved?"
             ];
 
-            var randomIndex = Math.floor(Math.random() * questions.length);
-            var randomQuestion = questions[randomIndex];
-            document.getElementById("question").innerHTML = randomQuestion;
-        }
+    if (usedIndices.length === questions.length) {
+        // If all indices are used, refresh the page or take appropriate action
+        location.reload(); // This will refresh the page
+        return;
+    }
+
+    var randomIndex;
+    do {
+        randomIndex = Math.floor(Math.random() * questions.length);
+    } while (usedIndices.includes(randomIndex));
+
+    usedIndices.push(randomIndex);
+
+    var randomQuestion = questions[randomIndex];
+    document.getElementById("question").innerHTML = randomQuestion;
+}
 
     </script>
 <div class="leftIndent small">
