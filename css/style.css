@@ -62,6 +62,21 @@ content:"\2709"; /* Unicode character for the desired icon (#10 1-j) */
 
 }
 
+#info::before {
+  content: "\e085";
+  font-family: 'Glyphicons Halflings';
+
+}
+
+#show::before {
+  content: "\e105";
+  font-family: 'Glyphicons Halflings';
+}
+#repeat::before {
+  content: "\e030";
+  font-family: 'Glyphicons Halflings';
+}
+
 .title {
   text-align: center;
 /*  font-size: 3em; */
@@ -409,11 +424,15 @@ display: none;
 .hidden {
 display: none;
 }
-.results{
-  margin: 10px;
-  font-size: 1.5em;
+
+.yellowBG {
+  background-image: url(../images/yellow.png);
 }
-.contentList {
-padding: 10px;
-font-size: 1.2em;
+
+.redBG {
+  background-image: url(../images/red.png);
+}
+
+.greenBG {
+  background-image: url(../images/green.png);
 }
