@@ -7,8 +7,8 @@
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/questions100.css">
-    <title>100 Questions</title>
     <script src="../js/script.js" defer></script>
+    <title>100 Questions</title>
 <style type="text/css">
     #checkboxes-container {
         display: none;
@@ -178,6 +178,7 @@
                 if (tickedIndexes.length > 0) {
                     const randomIndex = tickedIndexes[Math.floor(Math.random() * tickedIndexes.length)];
                     displayRandomOutput(variables[randomIndex]);
+                    
                 }
             });
         }

@@ -1,0 +1,162 @@
+<!-- restart button to keep the file uploaded, just reset all the variables. 
+    once import has been pressed, remove that button but include a 'clear' button that will refresh the page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/script.js" defer></script>
+    <title>Analogies</title>
+    <style type="text/css">
+        .buttons button {
+            width: 30%;
+        }
+        #result2 span {
+            font-weight: bold;
+            color: red;
+        }
+        .topSection {
+            text-align: center;
+        }
+        .results, .gameOverBox {
+            padding: 20px;
+            border: solid black 1px;
+            border-radius: 10px;
+            height: 50vh;
+            background-color: white;
+            margin: 10px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+<header class="navigation">
+    <a href="../index.html"><span class="homeButton"></span></a> &gt; <a href="games.html">Games</a> &gt; <a href="gamesAnalogiesImport.html">Analogies - Import</a>
+</header>
+<main>
+
+    <input class="col-6" type="file" accept=".csv" onchange="handleFileUpload(event);">
+
+    <div class="topSection">
+        <h1>Analogies</h1>
+    </div>
+    <section class="game">
+        <div class="results">
+            <p>
+                <span id="result1"></span>
+                <span id="result2"></span>
+            </p>
+            <div id="contentList" class="contentList hidden"></div>
+        </div>
+        <div class="buttons rowSpace">
+            <button onclick="toggleContentList()" class="yellowBG"><span id="info" style="display: block;"></span>Hints</button>
+            <button onclick="toggleContent()" class="redBG"><span id="show" style="display: block;"></span>Solution</button>
+            <button onclick="randomizeColumns(), hideContentList()" class="greenBG"><span id="nextBtn" style="display:block;"></span>Next</button>
+        </div>
+        <!-- Embedding CSV data -->
+    </section>
+    <section class="gameOver hidden">
+        <div class="gameOverBox">
+            <div>
+                <div class="rowCenter">
+                    <h1>Game over</h1>
+                </div>
+                <div class="rowCenter">
+                    <button class="col-4 greenBG" onclick="refresh()"><span id="repeat" style="display: block;"></span>Restart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let rows = []; // Initialize rows as an array
+        let usedRows = [];
+        let currentRow;
+
+        // Function to handle file input change
+        function handleFileUpload(event) {
+            const fileInput = event.target;
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const content = e.target.result;
+                    rows = content.split('\n').map(row => row.trim().split(','));
+
+                    // Remove rows that have empty values in the first column (category)
+                    rows = rows.filter(row => row[0].trim() !== '');
+
+                    // Display the first set of analogies
+                    randomizeColumns();
+                };
+
+                reader.readAsText(file);
+            }
+        }
+
+        function displayResults() {
+            // Your existing code for randomizeColumns and other functions
+        }
+
+        function randomizeColumns() {
+            if (rows.length === 0) {
+                // All rows have been used, show game over section
+                document.querySelector('.game').classList.add('hidden');
+                document.querySelector('.gameOver').classList.remove('hidden');
+                return;
+            }
+
+            currentRow = rows.shift(); // Take the first row
+            usedRows.push(currentRow);
+
+            const columns = currentRow;
+
+            document.getElementById('result1').innerHTML = ` ${columns[0].replace(/\{(.*?)\}/, '$1')}`;
+            document.getElementById('result2').innerHTML = `as ${columns[1].replace(/\{(.*?)\}/, '<span class="hidden">$1</span>')}`;
+
+            // Clear content list
+            contentList.innerHTML = '';
+
+            // Display content inside curly brackets for every column in the same row
+            columns.forEach(column => {
+                const content = column.match(/{(.*?)}/);
+                if (content) {
+                    const contentValue = content[1];
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${contentValue}`;
+                    contentList.appendChild(listItem);
+                }
+            });
+        }
+
+        function toggleContent() {
+            const contentList = document.querySelector('#result2 .hidden');
+            contentList.classList.toggle('hidden');
+        }
+
+        function toggleContentList() {
+            const contentList = document.getElementById('contentList');
+            contentList.classList.toggle('hidden');
+        }
+
+        function hideContentList() {
+            const contentList = document.getElementById('contentList');
+            contentList.classList.add('hidden');
+        }
+
+        function refresh() {
+            location.reload();
+        }
+    </script>
+
+</main>
+<footer class="navigation"> 
+    <a href="../pages/contact.html">Contact</a>
+    <a href="../pages/about.html">About</a>
+</footer>
+</body>
+</html>

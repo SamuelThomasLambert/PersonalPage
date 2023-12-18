@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/questions100.css">
+    <script src="../js/script.js" defer></script>
+    <style>
+        #scrollbox {
+            width: 100%;
+            height: 50vh;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: white;
+        }
+
+        #selectedAdjectives {
+            margin-top: 20px;
+        }
+
+        #clearButton {
+            margin-top: 10px;
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+    <title>Games</title>
+</head>
+
+<body>
+
+    <header class="navigation">
+        <a href="../index.html"><span class="homeButton"></span></a> &gt; <a href="games.html">Games</a> &gt; <a href="gamesTemplate.html">Game Template</a>
+    </header>
+
+    <main>
+        <div>
+            <h1>Analogies</h1>
+            <p>write a script using as many adjectives as possible</p>
+            <p>ask the teacher to change your script into analogies</p>
+        </div>
+
+
+    <div id="scrollbox">
+        <p>Happy (嬉しい - ureshii)</p>
+        <p>Sad (悲しい - kanashii)</p>
+        <p>Excited (興奮している - koufun shiteiru)</p>
+        <p>Depressed (落ち込んでいる - ochikondeiru)</p>
+        <p>Energetic (エネルギッシュ - enerugisshu)</p>
+        <p>Tired (疲れている - tsukareteiru)</p>
+        <p>Angry (怒っている - okotteiru)</p>
+        <p>Calm (落ち着いている - ochitsuiteiru)</p>
+        <p>Anxious (不安な - fuan na)</p>
+        <p>Confident (自信がある - jishin ga aru)</p>
+        <p>Shy (内気な - uchiki na)</p>
+        <p>Outgoing (社交的な - shakouteki na)</p>
+        <p>Friendly (フレンドリー - furendorii)</p>
+        <p>Hostile (敵意を持っている - tekii o motteiru)</p>
+        <p>Loving (愛情深い - aijoubukai)</p>
+        <p>Hateful (嫌悪感のある - ken'o-kan no aru)</p>
+        <p>Joyful (嬉しい - yorokobii)</p>
+        <p>Miserable (惨めな - mijime na)</p>
+        <p>Satisfied (満足している - manzoku shiteiru)</p>
+        <p>Discontent (不満な - fuman na)</p>
+        <p>Peaceful (平和な - heiwa na)</p>
+        <p>Restless (落ち着かない - ochitsukanai)</p>
+        <p>Curious (好奇心旺盛な - koukishin-ousei na)</p>
+        <p>Indifferent (無関心な - mukanshin na)</p>
+        <p>Enthusiastic (熱狂的な - nekkyouteki na)</p>
+        <p>Apathetic (無関心な - mukanshin na)</p>
+        <p>Hopeful (希望に満ちた - kibou ni michita)</p>
+        <p>Hopeless (絶望的な - zetsubouteki na)</p>
+        <p>Courageous (勇敢な - yuukan na)</p>
+        <p>Fearful (恐れている - osoreteiru)</p>
+        <p>Pessimistic (悲観的な - hikanteki na)</p>
+        <p>Optimistic (楽観的な - rakkanteki na)</p>
+        <p>Playful (遊び心のある - asobigokoro no aru)</p>
+        <p>Serious (真剣な - shinken na)</p>
+        <p>Carefree (のんびりした - nonbiri shita)</p>
+        <p>Careful (慎重な - shinchou na)</p>
+        <p>Lively (活気のある - kakkii no aru)</p>
+        <p>Dull (退屈な - taikutsu na)</p>
+        <p>Daring (大胆な - daitan na)</p>
+        <p>Cautious (用心深い - youjinbukai)</p>
+        <p>Wise (賢明な - kenmei na)</p>
+        <p>Foolish (愚かな - orokana)</p>
+        <p>Generous (寛大な - kandai na)</p>
+        <p>Stingy (けちな - kechi na)</p>
+        <p>Grateful (感謝している - kansha shiteiru)</p>
+        <p>Ungrateful (感謝しない - kansha shinai)</p>
+        <p>Honest (正直な - shoujiki na)</p>
+        <p>Dishonest (不正直な - fuseijiki na)</p>
+        <p>Humble (謙虚な - kenkyo na)</p>
+        <p>Arrogant (傲慢な - gouman na)</p>
+        <p>Kind (親切な - shinsetsu na)</p>
+        <p>Cruel (残酷な - zankokuna)</p>
+        <p>Modest (控えめな - hikaeme na)</p>
+        <p>Showy (派手な - hade na)</p>
+        <p>Polite (礼儀正しい - reigishashii)</p>
+        <p>Rude (失礼な - shitsurei na)</p>
+        <p>Patient (辛抱強い - shinbouzuyoi)</p>
+        <p>Impatient (我慢できない - gaman dekinai)</p>
+        <p>Tolerant (寛容な - kanyou na)</p>
+        <p>Intolerant (寛容でない - kanyou denai)</p>
+        <p>Trusting (信頼している - shinrai shiteiru)</p>
+        <p>Suspicious (疑念を抱いている - ginen o idaiteiru)</p>
+        <p>Responsible (責任感がある - sekinin-kan ga aru)</p>
+        <p>Irresponsible (無責任な - musekinin na)</p>
+        <p>Reliable (頼りになる - tayori ni naru)</p>
+        <p>Unreliable (頼りにならない - tayori ni naranai)</p>
+        <p>Efficient (効率的な - kouritsuteki na)</p>
+        <p>Inefficient (非効率的な - hikouritsuteki na)</p>
+        <p>Independent (独立した - dokuritsu shita)</p>
+        <p>Dependent (依存している - izon shiteiru)</p>
+        <p>Creative (創造的な - souzouteki na)</p>
+        <p>Uncreative (創造性のない - souzousei no nai)</p>
+        <p>Flexible (柔軟な - juunan na)</p>
+        <p>Inflexible (硬直した - kouchoku shita)</p>
+        <p>Resourceful (知恵がある - chie ga aru)</p>
+        <p>Helpless (無力な - muryoku na)</p>
+        <p>Organized (整理整頓された - seiri seiton sareta)</p>
+        <p>Disorganized (整理されていない - seiri sareteinai)</p>
+        <p>Patient (辛抱強い - shinbouzuyoi)</p>
+        <p>Impatient (我慢できない - gaman dekinai)</p>
+        <p>Skilled (熟練した - jukuren shita)</p>
+        <p>Unskilled (未熟な - mijuku na)</p>
+        <p>Sociable (社交的な - shakouteki na)</p>
+        <p>Unsociable (非社交的な - hishakouteki na)</p>
+        <p>Assertive (断固とした - danko to shita)</p>
+        <p>Passive (受け身の - ukemi no)</p>
+        <p>Compassionate (思いやりのある - omoiyari no aru)</p>
+        <p>Heartless (非情な - hijou na)</p>
+        <p>Logical (論理的な - ronriteki na)</p>
+        <p>Illogical (非論理的な - hironriteki na)</p>
+        <p>Understanding (理解力のある - rikai ryoku no aru)</p>
+        <p>Incomprehensible (理解できない - rikai dekinai)</p>
+        <p>Talented (才能がある - sainou ga aru)</p>
+        <p>Untalented (才能がない - sainou ga nai)</p>
+        <p>Vibrant (活気に満ちた - kakkini michita)</p>
+        <p>Dull (退屈な - taikutsu na)</p>
+        <p>Determined (決意を持った - ketsui o motta)</p>
+        <p>Indecisive (優柔不断な - yuujou fudan na)</p>
+        <p>Motivated (やる気満々な - yaruki manman na)</p>
+        <p>Apathetic (無関心な - mukanshin na)</p>
+    </div>
+
+        <div id="selectedAdjectives">
+            <h2>Selected Adjectives:</h2>
+            <ul id="selectedList"></ul>
+            <button id="clearButton" onclick="clearList()">Clear</button>
+        </div>
+    </main>
+
+    <footer class="navigation"> 
+        <a href="../pages/contact.html">Contact</a>
+        <a href="../pages/about.html">About</a>
+    </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var selectedList = document.getElementById("selectedList");
+        var scrollbox = document.getElementById("scrollbox");
+
+        scrollbox.addEventListener("click", function(event) {
+            if (event.target.tagName === "P") {
+                var adjective = event.target.textContent;
+                addToSelectedList(adjective);
+            }
+        });
+
+        function addToSelectedList(adjective) {
+            var listItem = document.createElement("li");
+            listItem.textContent = adjective;
+            selectedList.appendChild(listItem);
+        }
+
+        function clearList() {
+            while (selectedList.firstChild) {
+                selectedList.removeChild(selectedList.firstChild);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/questions100.css">
+    <script src="../js/script.js"></script>
+    <script src="../js/wordWolfPairs.js"></script>
+    <title>Games</title>
+  <style>
+    /* Add some basic styling for better visibility */
+    #playersContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    .playerBox {
+      width: 100px;
+      height: 200px;
+      background-color: lightblue;
+      margin: 5px;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+    }
+    .resultsHidden {
+      display: none;
+    }
+
+    .resultsShow {
+      display: block;
+    }
+    #reload {
+        position: relative;
+        bottom: -20%;
+    }
+    .progression {
+        height: 50px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+    <header class="navigation">
+        <a href="../index.html"><span class="homeButton"></span></a> &gt; <a href="games.html">Games</a> &gt; <a href="gamesWordWolf.html">Word Wolf</a>
+    </header>
+
+    <main>
+
+<section id="slide1" class="slide">
+   <!-- Divs for player data selection -->
+<div>
+    <p>Select Player Data:</p>
+    <button onclick="loadPlayerData(3) , showSlide(1)" >Load Player Data 3</button> 
+    <button onclick="loadPlayerData(4) , showSlide(1)" >Load Player Data 4</button> 
+    <button onclick="loadPlayerData(5) , showSlide(1)" >Load Player Data 5</button> 
+    <button onclick="loadPlayerData(6) , showSlide(1)" >Load Player Data 6</button>
+</div> 
+</section>
+
+<section id="slide2" class="slide">
+  <!-- Container for player divs -->
+  <div id="playersContainer">
+    <div id="playerBox1" class="playerBox" onclick="hideOthers(this) , showResults() , enableProgressionButtons()">Player 1 <span id="player1" class="resultsHidden">Player 1</span></div>
+    <div id="playerBox2" class="playerBox"  onclick="hideOthers(this) , showResults() , enableProgressionButtons()">Player 2 <span id="player2" class="resultsHidden">Player 2</span></div>
+    <div id="playerBox3" class="playerBox"  onclick="hideOthers(this) , showResults() , enableProgressionButtons()">Player 3 <span id="player3" class="resultsHidden">Player 3</span></div>
+    <div id="playerBox4" class="playerBox"  onclick="hideOthers(this) , showResults() , enableProgressionButtons()">Player 4 <span id="player4" class="resultsHidden">Player 4</span></div>
+    <div  id="playerBox5" class="playerBox" onclick="hideOthers(this) , showResults() , enableProgressionButtons()">Player 5 <span id="player5" class="resultsHidden">Player 5</span></div>
+    <div id="playerBox6" class="playerBox"  onclick="hideOthers(this) , showResults() , enableProgressionButtons()">Player 6 <span id="player6" class="resultsHidden">Player 6</span></div>
+  </div>
+<div id="gameRoundDisplay">
+    Game round: <span id="gameRoundValue">1</span>
+</div>
+<div class="rowSpace">
+<button id="prevBtn" onclick="prevRound()" disabled  class="progression col-1 yellowBG"></button>
+<button id="nextBtn" onclick="nextRound()" disabled class="progression col-10 greenBG"></button>
+</div>
+<button id="reload" onclick="reloadPage()" class="redBG progression">Restart</button>
+
+</section>
+
+<section id="debug">
+        <div>
+            <p  class="hidden">Player Round: <span id="playerRound">1</span></p>
+            <p  class="hidden">Word Round: <span id="wordRound">1</span></p>
+            <div id="wordPairDisplay"  class="hidden">
+                <p>Word Pair:</p>
+                <p id="word1"></p>
+                <p id="word2"></p>
+            </div>
+        </div>
+        <!-- Divs to display player data -->
+        <div id="playerDataDisplay" class="hidden">
+            <!-- The content will be dynamically populated here -->
+        </div>
+        <!-- Div to display combined player pairs -->
+        <div id="playerPairsCombined">
+            <!-- The content will be dynamically populated here -->
+        </div>
+</section>
+
+<script>
+//ennable progressions
+    function enableProgressionButtons() {
+  var buttons = document.querySelectorAll('.progression');
+
+  buttons.forEach(function(button) {
+    button.disabled = false;
+  });
+}
+//rounds and data
+// Initialize variables
+let playerRound = 1;
+let wordRound = 1;
+let gameRound = 1;
+let playerDataLength = 0; // Variable to store the length of loaded playerData
+const wordPairs = getWordWolfPairs(); // Assuming getWordWolfPairs() is a function in wordWolfPairs.js
+
+// Function to go to the next round
+function nextRound() {
+    playerRound = (playerRound % playerDataLength) + 1;
+    wordRound = (wordRound % wordPairs.length) + 1;
+    gameRound = gameRound + 1;
+    updateDisplay();
+}
+
+// Function to go to the previous round
+function prevRound() {
+    playerRound = (playerRound - 2 + playerDataLength) % playerDataLength + 1;
+    wordRound = (wordRound - 2 + wordPairs.length) % wordPairs.length + 1;
+    updateDisplay();
+gameRound = Math.max(gameRound - 1, 1);
+}
+
+// Function to update the display with the current round values
+function updateDisplay() {
+    document.getElementById("playerRound").innerText = playerRound;
+    document.getElementById("wordRound").innerText = wordRound;
+    document.getElementById("gameRoundValue").innerText = gameRound;
+
+
+    // Display the corresponding word pair
+    const wordPair = wordPairs[wordRound - 1];
+    document.getElementById("word1").innerText = `${wordPair[0]}`;
+    document.getElementById("word2").innerText = `${wordPair[1]}`;
+
+    // Update player data display
+    displayPlayerData();
+
+    // Update combined player pairs display
+    updatePlayerPairsCombined();
+}
+
+// Function to load player data based on the selected number
+function loadPlayerData(number) {
+    const script = document.createElement('script');
+    script.src = `../js/playerData${number}.js`;
+
+    // Define a callback function to execute after the script has loaded
+    script.onload = function () {
+        // Assuming playerData is defined in the loaded script
+        console.log(playerData);
+
+        // Update the length of playerData
+        playerDataLength = playerData.length;
+
+        // Update the display after loading player data
+        updateDisplay();
+    };
+
+    document.body.appendChild(script);
+}
+
+// Function to display player data in separate divs
+function displayPlayerData() {
+    const playerDataDisplay = document.getElementById("playerDataDisplay");
+    playerDataDisplay.innerHTML = ""; // Clear previous content
+
+    if (playerData && playerData[playerRound - 1]) {
+        const rowData = playerData[playerRound - 1];
+
+        // Create divs for each column in the row
+        rowData.forEach((value, index) => {
+            const columnDiv = document.createElement("div");
+            columnDiv.innerText = `Column ${index + 1}: ${value}`;
+            playerDataDisplay.appendChild(columnDiv);
+        });
+    }
+}
+
+// Function to update the combined player pairs display
+function updatePlayerPairsCombined() {
+    if (playerData && playerData[playerRound - 1]) {
+        const rowData = playerData[playerRound - 1];
+
+        // Remove player divs with IDs greater than current index
+        for (let i = rowData.length + 1; i <= 6; i++) {
+            const playerDivToRemove = document.getElementById(`playerBox${i}`);
+            if (playerDivToRemove) {
+                playerDivToRemove.remove();
+            }
+        }
+
+        rowData.forEach((value, index) => {
+            const playerDiv = document.getElementById(`player${index + 1}`);
+
+            if (playerDiv) {
+                // Update the inner text of the existing player div
+                playerDiv.innerText = (value === "Player") ? document.getElementById("word1").innerText : (value === "Wolf") ? document.getElementById("word2").innerText : "";
+
+            }
+        });
+    }
+}
+
+// hiding and showing the results
+
+    /* show results on press */
+    function showResults() {
+      var elements = document.querySelectorAll('.resultsHidden');
+
+      elements.forEach(function(element) {
+        element.classList.remove('resultsHidden');
+        element.classList.add('resultsShow');
+      });
+    }
+
+//showing only active player
+function hideOthers(clickedDiv) {
+  // Get the container for player divs
+  var container = document.getElementById('playersContainer');
+  
+  // Get all player divs inside the container
+  var playerDivs = container.querySelectorAll('div');
+
+  // Iterate through each player div and hide it if it's not the clicked one
+  playerDivs.forEach(function(div) {
+    if (div !== clickedDiv) {
+      div.style.display = 'none';
+    }
+  });
+}
+
+ /* restart button */
+    function reloadPage() {
+      location.reload();
+    }
+
+
+// JavaScript for showing slides...
+let currentSlide = 1;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(step) {
+    slides[currentSlide - 1].style.display = 'none';
+    currentSlide += step;
+
+    if (currentSlide < 1) {
+        currentSlide = slides.length;
+    } else if (currentSlide > slides.length) {
+        currentSlide = 1;
+    }
+
+    slides[currentSlide - 1].style.display = 'block';
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    showSlide(0); // Show the first slide initially
+});
+</script>
+
+
+</main>
+
+<footer class="navigation">
+    <a href="../pages/contact.html">Contact</a>
+    <a href="../pages/about.html">About</a>
+</footer>
+
+</body>
+
+</html>
