@@ -1,4 +1,4 @@
-// playerData3.js
+// ../js/playerData3.js
 var playerData = [
     ['Player', 'Player', 'Wolf'],
     ['Player', 'Wolf', 'Player'],
