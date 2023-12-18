@@ -1,0 +1,227 @@
+/*color section buttons should be width of section */
+* {
+  box-sizing: border-box;  
+}
+
+body {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  background-image: url("../images/white.png");
+  margin: 0;
+}
+/* Custom icon */
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.homeButton::before {
+  content: '\e021'; /* Unicode character for the desired icon (#10 1-j) */
+  font-family: 'Glyphicons Halflings';
+}
+
+.title {
+  text-align: center;
+  font-size: 3em;
+  padding-top: 10%;
+}
+
+.big {
+  text-align: center;
+  font-size: 2em;
+  padding-top: 10px;
+}
+
+.clear {
+  clear: both;
+}
+.stackBox {
+  float: left;
+}
+
+main {
+  min-height: 85vh; /* Ensure the body takes at least the full height of the viewport */
+}
+
+header, footer {
+  background-image: url("../images/lightGrey.png"); 
+  border-radius: 5px; 
+  padding: 7px 10px 10px;
+}
+
+footer a:link {
+  display: inline-block;
+  width: 70px;
+  text-align: center;
+}
+
+.navigation a:link {
+  padding: 10px;
+  border-radius: 5px; 
+  text-decoration: none;
+  color: black;
+}
+
+.navigation a:hover, .navigation a:active {
+  background-image: url("../images/darkGrey.png"); 
+  color: black;
+}
+
+.navigation a:visited {
+  color: black;
+}
+
+.colorSection {
+  background-image: url("../images/lightGrey.png"); 
+  border-radius: 5px;
+  padding: 10px; 
+  width: 30%;
+  float: left;
+  margin: 5px;
+  text-align: center;
+}
+
+/* slides */ 
+
+.slide {
+  padding: 20px;
+  border: solid black 1px;
+  background-color: white;
+  min-height: 80vh;
+}
+
+.slide h2 {
+  text-align: center;
+  font-size: 3em;
+}
+
+
+.slide p {
+/*  padding: 0px 10px 0px;
+*/  margin-top: 0px;
+}
+
+.slide img {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-items: stretch;
+  align-content: left; 
+  align-items: baseline;
+/*  padding: 10px; */
+}
+
+.row1 {
+  flex-shrink: 1;
+/*  flex-grow: 1; */
+/*  flex-basis: 5px;     grow doesnt work with justify */    
+  padding: 10px;  
+}
+
+.row2 {
+   flex-grow: 0;
+   flex-shrink: 0;
+/*   flex-basis: 30%;*/
+}
+
+.row3 {
+  flex-shrink: 3; 
+/*  flex-grow: 3;  */
+/*  flex-basis: 50px; */
+  padding: 10px; 
+}
+
+.row6 {
+  flex-shrink: 6;
+/*  flex-grow: 6; */
+/*  flex-basis: 50px; */
+  padding: 10px;
+
+}
+
+.row12 {
+  flex-shrink: 12;
+/*  flex-grow: 12; */
+/*  flex-basis: 50px; */
+  padding: 10px;
+}
+
+/*
+.slideNavigation {
+  width: 100%;
+}
+*/
+
+button {
+  padding: 5px;
+  background-image: url("../images/lightGrey.png"); 
+  border-radius: 5px;
+  border-width: 1px;
+}
+
+button:hover {
+    background-image: url("../images/darkGrey.png"); 
+}
+
+/*
+ .columns2 {
+  columns: 2;
+ }
+
+
+/*buttons */
+
+#startBtn::before {
+  content: '\e069'; /* Unicode character for the desired icon (#10 1-j) */
+  font-family: 'Glyphicons Halflings';
+  width: 10%;
+}
+
+#prevBtn::before {
+content:"\e079"; /* Unicode character for the desired icon (#10 1-j) */
+  font-family: 'Glyphicons Halflings';
+  width: 30%;
+}
+#nextBtn::before {
+content:"\e080"; /* Unicode character for the desired icon (#10 1-j) */
+  font-family: 'Glyphicons Halflings';
+  width: 30%;
+}
+
+#endBtn::before {
+content:"\e077"; /* Unicode character for the desired icon (#10 1-j) */
+  font-family: 'Glyphicons Halflings';
+  width: 10%;
+}
+
+
+#startBtn {
+  width: 10%;
+  float: left;
+}
+
+#prevBtn {
+  width: 40%;
+  float: left;
+}
+
+#nextBtn {
+  width: 40%;
+  float: left;
+}
+
+#endBtn {
+  width: 10%;
+  float: left;
+}
+
+#mailTo::before {
+content:"\2709"; /* Unicode character for the desired icon (#10 1-j) */
+  font-family: 'Glyphicons Halflings';
+}

@@ -6,7 +6,7 @@
 body {
   font-family: "Trebuchet MS", Helvetica, sans-serif;
   background-image: url("../images/white.png");
-  margin: 0;
+  margin: 10px;
 /*  font-size: 150%; */
         user-select: none; /* This prevents text selection */
 
@@ -99,7 +99,7 @@ content:"\2709"; /* Unicode character for the desired icon (#10 1-j) */
   cursor: pointer;
 }
 main {
-  min-height: 85vh; /* Ensure the body takes at least the full height of the viewport */
+  min-height: 80vh; /* Ensure the body takes at least the full height of the viewport */
 }
 
 header, footer {
@@ -181,7 +181,8 @@ button {
 }
 
 button:hover {
-    background-image: url("../images/darkGrey.png"); 
+/*    background-image: url("../images/darkGrey.png");  */
+border-width: 5px;
 }
 
 .boxJustifyCenter {
