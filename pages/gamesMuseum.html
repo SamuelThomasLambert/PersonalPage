@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Row Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        th:nth-child(1), td:nth-child(1) {
+    background-color: lightgreen;
+}
+
+    </style>
+</head>
+<body>
+
+<h1>Random Row Display</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>I'm going to a museum</th>
+            <th>Hint 1</th>
+            <th>Hint 2</th>
+            <th>Hint 3</th>
+        </tr>
+    </thead>
+    <tbody id="dataBody">
+        <!-- The rows will be added here dynamically -->
+    </tbody>
+</table>
+
+<button onclick="displayRandomRow()">Get New Result</button>
+
+<script>
+
+const data = [
+    ["I’m going to a museum:", "Hint 1", "Hint 2", "Hint 3"],
+    ["Things that are red", "Things that are (adjectives)", "how does it look?", "color"],
+    ["Things that are blue", "Things that are (adjectives)", "how does it look?", "color"],
+    ["Things that are yellow", "Things that are (adjectives)", "how does it look?", "color"],
+    ["Things that are black", "Things that are (adjectives)", "how does it look?", "color"],
+    ["Things that are white", "Things that are (adjectives)", "how does it look?", "color"],
+    ["Things that are hot", "Things that are (adjectives)", "how does it feel?", "temperature"],
+    ["Things that are cold", "Things that are (adjectives)", "how does it feel?", "temperature"],
+    ["Things that are wet", "Things that are (adjectives)", "how does it feel?", "how much water does it absorb?"],
+    ["Things that are dry", "Things that are (adjectives)", "how does it feel?", "how much water does it absorb?"],
+    ["Things that are hard", "Things that are (adjectives)", "how does it feel?", "what does it feel like when I touch it"],
+    ["Things that are soft", "Things that are (adjectives)", "how does it feel?", "what does it feel like when I touch it"],
+    ["Things that are shiny", "Things that are (adjectives)", "what does it look like", "can I see other things when I look at this?"],
+    ["Things that are fragile", "Things that are (adjectives)", "think about the material", "what if I drop it?"],
+    ["Things that are smooth", "Things that are (adjectives)", "how does it feel?", "what does it feel like when I touch it"],
+    ["Things that are rough", "Things that are (adjectives)", "how does it feel?", "what does it feel like when I touch it"],
+    ["Things that are transparent (see through)", "Things that are (adjectives)", "how does it look?", "can I see other things when I look at this?"],
+    ["Things that are flexible (can bend)", "Things that are (adjectives)", "what can I do with it?", "what if I try to bend it?"],
+    ["Things that are bumpy", "Things that are (adjectives)", "how does it feel?", "what does it feel like when I touch it"],
+    ["Things that are illegal", "Things that are (adjectives)", "Think of verbs", "What will happen to me when I do this"],
+    ["Things that are edible", "Things that are (adjectives)", "where can I put it?", "what do I do with these things?"],
+    ["Things that are scary", "Things that are (adjectives)", "some people may feel different about these answers", "how do you feel about these things?"],
+    ["Things that have a double vowel", "grammar or spelling", "'think of the word, not the meaning'", "how do I spell it?"],
+    ["Things that start with S", "grammar or spelling", "'think of the word, not the meaning'", "how do I spell it?"],
+    ["Things that are plural (more than 1)", "grammar or spelling", "think about the grammar", "how many are there?"],
+    ["Things that can swim", "Things that can (verb)", "Is it on the ground?", "Something you can do in water"],
+    ["Things that can fly", "Things that can (verb)", "Is it on the ground?", "something you do in the sky"],
+    ["Things that can climb", "Things that can (verb)", "Is it on the ground?", "'you can go up or down, but not across'"],
+    ["Things that can jump", "Things that can (verb)", "Is it on the ground?", "'It can go up, but gravity will bring it down again'"],
+    ["Things that can float", "Things that can (verb)", "it needs water to do this", "only things lighter than water can do this"],
+    ["Things made of wood", "'Many of these things have the same texture, color and appearance.'", "How is it built or made?", "Things made of (material)"],
+    ["Things made of metal", "'Many of these things have the same texture, color and appearance.'", "How is it built or made?", "Things made of (material)"],
+    ["Things made of glass", "'Many of these things have the same texture, color and appearance.'", "How is it built or made?", "Things made of (material)"],
+    ["Things made of plastic", "'Many of these things have the same texture, color and appearance.'", "How is it built or made?", "Things made of (material)"],
+    ["Things made of fabric", "'Many of these things have the same texture, color and appearance.'", "How is it built or made?", "Things made of (material)"],
+    ["Things made of stone", "'Many of these things have the same texture, color and appearance.'", "How is it built or made?", "Things made of (material)"],
+    ["Things made of paper", "'Many of these things have the same texture, color and appearance.'", "How is it built or made?", "Things made of (material)"],
+    ["Things made of leather", "'Many of these things have the same texture, color and appearance.'", "How is it built or made?", "Things made of (material)"],
+    ["Things made of ceramic", "'Many of these things have the same texture, color and appearance.'", "How is it built or made?", "Things made of (material)"],
+    ["Things made of rubber", "'Many of these things have the same texture, color and appearance.'", "How is it built or made?", "Things made of (material)"],
+    ["Things made of bamboo", "'Many of these things have the same texture, color and appearance.'", "How is it built or made?", "Things made of (material)"],
+    ["Things made of fur", "'Many of these things have the same texture, color and appearance.'", "How is it built or made?", "Things made of (material)"],
+    ["Things that have many colors", "Things that have (attribute)", "They have many different kinds of this attribute", "what is the appearance? In particular color?"],
+    ["Things that have a strong scent", "Things that have (attribute)", "This attribute is very strong", "think of your six senses"],
+    ["Things that have an owner", "Things that have (attribute)", "Think of people's relationship with these things", "'While they 'have' this, the ownership is reversed.'"],
+    ["Things that are smaller than a person", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "smaller than a ______"],
+    ["Things that are faster than a car", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "faster  than a ______"],
+    ["Things that are shorter than me", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "shorter  than  ______"],
+    ["Things that are slower than a bicycle", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "slower  than a ______"],
+    ["Things that are taller than a tree", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "taller  than a ______"],
+    ["Things that are faster than a person", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "faster than a ______"],
+    ["Things that are smaller than a mouse", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "smaller than a ______"],
+    ["Things that are slower than a dog", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "slower than a ______"],
+    ["Things that are louder than a drum", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "louder than a ______"],
+    ["Things that are quieter than a whisper", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "quieter than a ______"],
+    ["Things that are lighter than a brick", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "lighter than a ______"],
+    ["Things that are heavier than a watermelon", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "heavier than a ______"],
+    ["Things that are longer than a snake", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "longer than a ______"],
+    ["Things that are older than me", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "Older than _____"],
+    ["Things that are bigger than me", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "Bigger than ____"],
+    ["things that are smaller than me", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "Smaller than ____."]
+];
+
+    let remainingRows = [...data];
+
+    // Function to display a random row
+    function displayRandomRow() {
+        if (remainingRows.length === 0) {
+            alert("Game Over! You've seen all the rows.");
+            return;
+        }
+
+        const randomIndex = Math.floor(Math.random() * remainingRows.length);
+        const randomRow = remainingRows.splice(randomIndex, 1)[0];
+
+        const tbody = document.getElementById('dataBody');
+        tbody.innerHTML = ""; // Clear previous rows
+
+        const newRow = document.createElement('tr');
+        randomRow.forEach(cellData => {
+            const cell = document.createElement('td');
+            cell.textContent = cellData;
+            newRow.appendChild(cell);
+        });
+
+        tbody.appendChild(newRow);
+    }
+
+    // Initial display
+    displayRandomRow();
+</script>
+
+</body>
+</html>
