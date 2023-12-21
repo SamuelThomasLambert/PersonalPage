@@ -2,57 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Row Display</title>
+    <title>Random Result</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        button {
-            font-size: 16px;
+        .result-container {
+            float: left;
+            margin: 10px;
             padding: 10px;
-            margin-top: 10px;
-            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
-        th:nth-child(1), td:nth-child(1) {
-    background-color: lightgreen;
-}
-
+        .clickHere {
+            width: 100%;
+            height: 50px;
+            background-color: grey;
+            text-align: center;
+        }
+        .result-container.result-1 {
+            background-color: lightblue;
+        }
     </style>
 </head>
 <body>
-
-<h1>Random Row Display</h1>
-
-<table>
-    <thead>
-        <tr>
-            <th>I'm going to a museum</th>
-            <th>Hint 1</th>
-            <th>Hint 2</th>
-            <th>Hint 3</th>
-        </tr>
-    </thead>
-    <tbody id="dataBody">
-        <!-- The rows will be added here dynamically -->
-    </tbody>
-</table>
-
-<button onclick="displayRandomRow()">Get New Result</button>
-
-<script>
-
+    <div class="clickHere" onclick="generateRandomResult()">
+        Click here
+    </div>
+    <script>
 const data = [
     ["I’m going to a museum:", "Hint 1", "Hint 2", "Hint 3"],
     ["Things that are red", "Things that are (adjectives)", "how does it look?", "color"],
@@ -117,34 +93,25 @@ const data = [
     ["things that are smaller than me", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "Smaller than ____."]
 ];
 
-    let remainingRows = [...data];
+        // Function to generate and display random result
+        function generateRandomResult() {
+            // Remove existing result containers
+            const existingResultContainers = document.querySelectorAll(".result-container");
+            existingResultContainers.forEach(container => container.remove());
 
-    // Function to display a random row
-    function displayRandomRow() {
-        if (remainingRows.length === 0) {
-            alert("Game Over! You've seen all the rows.");
-            return;
+            // Select a random row
+            const randomRowIndex = Math.floor(Math.random() * data.length);
+            const randomRow = data[randomRowIndex];
+            for (let i = 0; i < 4; i++) {
+                const resultContainer = document.createElement("div");
+                resultContainer.className = `result-container result-${i + 1}`;
+                resultContainer.textContent = randomRow[i];
+                document.body.appendChild(resultContainer);
+            }
         }
 
-        const randomIndex = Math.floor(Math.random() * remainingRows.length);
-        const randomRow = remainingRows.splice(randomIndex, 1)[0];
-
-        const tbody = document.getElementById('dataBody');
-        tbody.innerHTML = ""; // Clear previous rows
-
-        const newRow = document.createElement('tr');
-        randomRow.forEach(cellData => {
-            const cell = document.createElement('td');
-            cell.textContent = cellData;
-            newRow.appendChild(cell);
-        });
-
-        tbody.appendChild(newRow);
-    }
-
-    // Initial display
-    displayRandomRow();
-</script>
-
+        // Initial generation of random result
+        generateRandomResult();
+    </script>
 </body>
 </html>
