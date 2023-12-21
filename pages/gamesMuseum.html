@@ -14,23 +14,26 @@
             border-radius: 5px;
         }
         .clickHere {
-            width: 100%;
+            width: 200px;
             height: 50px;
-            background-color: grey;
+            background-color: green;
             text-align: center;
+            border: solid black 1px;
+            border-radius: 15px;
         }
         .result-container.result-1 {
             background-color: lightblue;
+            width: 90%;
         }
     </style>
 </head>
 <body>
-    <div class="clickHere" onclick="generateRandomResult()">
-        Click here
+    <div class="title">
+        <h1>A museum of things that ____________ .</h1>
+    <button class="clickHere" onclick="generateRandomResult()">New</button>
     </div>
     <script>
 const data = [
-    ["I’m going to a museum:", "Hint 1", "Hint 2", "Hint 3"],
     ["Things that are red", "Things that are (adjectives)", "how does it look?", "color"],
     ["Things that are blue", "Things that are (adjectives)", "how does it look?", "color"],
     ["Things that are yellow", "Things that are (adjectives)", "how does it look?", "color"],
@@ -75,22 +78,6 @@ const data = [
     ["Things that have many colors", "Things that have (attribute)", "They have many different kinds of this attribute", "what is the appearance? In particular color?"],
     ["Things that have a strong scent", "Things that have (attribute)", "This attribute is very strong", "think of your six senses"],
     ["Things that have an owner", "Things that have (attribute)", "Think of people's relationship with these things", "'While they 'have' this, the ownership is reversed.'"],
-    ["Things that are smaller than a person", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "smaller than a ______"],
-    ["Things that are faster than a car", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "faster  than a ______"],
-    ["Things that are shorter than me", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "shorter  than  ______"],
-    ["Things that are slower than a bicycle", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "slower  than a ______"],
-    ["Things that are taller than a tree", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "taller  than a ______"],
-    ["Things that are faster than a person", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "faster than a ______"],
-    ["Things that are smaller than a mouse", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "smaller than a ______"],
-    ["Things that are slower than a dog", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "slower than a ______"],
-    ["Things that are louder than a drum", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "louder than a ______"],
-    ["Things that are quieter than a whisper", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "quieter than a ______"],
-    ["Things that are lighter than a brick", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "lighter than a ______"],
-    ["Things that are heavier than a watermelon", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "heavier than a ______"],
-    ["Things that are longer than a snake", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "longer than a ______"],
-    ["Things that are older than me", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "Older than _____"],
-    ["Things that are bigger than me", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "Bigger than ____"],
-    ["things that are smaller than me", "Think about the objects when compared to something else", "Things that are (comparative) than a (object)", "Smaller than ____."]
 ];
 
         // Function to generate and display random result
@@ -105,8 +92,13 @@ const data = [
             for (let i = 0; i < 4; i++) {
                 const resultContainer = document.createElement("div");
                 resultContainer.className = `result-container result-${i + 1}`;
-                resultContainer.textContent = randomRow[i];
+                if (i == 0){
+                resultContainer.textContent = 'Museum of ' + randomRow[i];
                 document.body.appendChild(resultContainer);
+            } else {
+                resultContainer.textContent = 'Hint: ' + randomRow[i];
+                document.body.appendChild(resultContainer);
+            }
             }
         }
 
