@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="css/style.css"> 
+<link rel="stylesheet" href="../css/style.css"> 
 <title>Samuel Thomas Lambert</title>
-  <script src="js/script.js"></script>
-  <script src="js/jquery-3.7.1.js"></script>
+  <script src="../js/script.js"></script>
+  <script src="../js/jquery-3.7.1.js"></script>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
             userId: 1
           }
                   $.ajax({
-          url: 'https://jsonplaceholder.typicode.com/posts',
+          url: '../json/data.json',
           type: 'POST',
           headers: {
             'Content-Type': 'application/json'
