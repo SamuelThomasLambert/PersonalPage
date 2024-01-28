@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="css/style.css"> 
+<title>Samuel Thomas Lambert</title>
+  <script src="js/script.js"></script>
+  <script src="js/jquery-3.7.1.js"></script>
+</head>
+
+<body>
+  <h1>JSON for server</h1>
+  <button id="postDataBtn">Post data</button>
+  <div id="output"></div>
+  <script>
+      $(document).ready(function(){
+        const postDataBtn = $('#postDataBtn');
+        const outputDiv = $('#output');
+
+        postDataBtn.on('click', function(){
+          const postData = {
+            title: 'My new post',
+            body: 'This is the body of my new post',
+            userId: 1
+          }
+                  $.ajax({
+          url: 'https://jsonplaceholder.typicode.com/posts',
+          type: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: JSON.stringify(postData),
+          dataType: 'json',
+          success: function(post){
+            const postString = JSON.stringify(post, null, 2); //null says we dont want to filter or modify the response. 2 is for indent and readability.
+            outputDiv.text(postString);
+          },
+          error: function(error){
+            console.error(error)
+          }
+        })
+        })
+      })
+  </script>  
+</body>
+
+</html>

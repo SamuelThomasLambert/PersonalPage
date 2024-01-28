@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="css/style.css"> 
+<title>Samuel Thomas Lambert</title>
+  <script src="js/script.js"></script>
+  <script src="js/jquery-3.7.1.js"></script>
+</head>
+
+<body>
+  <h1>Display json data</h1>
+  <div id="container"></div>
+  <script>
+      $(document).ready(function(){
+        $.ajax({
+          url: "data.json",
+          dataType: 'json',
+          success: function(data){
+            let jsonData = $.parseJSON(JSON.stringify(data));
+
+            $.each(jsonData.items, function(index, value){
+
+                let html = "<div class='item'><h3>" + value.title + "</h3><p>"
+                + value.description + "</p></div>";
+                $('#container').append(html)
+            })
+          }
+        })
+      })
+  </script>  
+</body>
+
+</html>
