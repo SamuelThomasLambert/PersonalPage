@@ -16,7 +16,7 @@
   <script>
       $(document).ready(function(){
         $.ajax({
-          url: "data.json",
+          url: "../json/data.json",
           dataType: 'json',
           success: function(data){
             let jsonData = $.parseJSON(JSON.stringify(data));
