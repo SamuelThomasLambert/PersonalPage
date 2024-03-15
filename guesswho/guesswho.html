@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        /* CSS for image gallery */
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .image-container img {
+            max-width: 200px;
+            height: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer; /* Add cursor pointer to indicate clickable */
+        }
+        /* CSS for 'you' box */
+        .you-box {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            padding: 3px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer; /* Add cursor pointer */
+        }
+        .you-box img {
+            
+            height: 200px; /* Initial height */
+            margin-top: 5px;
+            transition: height 0.3s; /* Add transition for smooth height change */
+        }
+        .you-box.clicked img {
+            height: 400px; /* Changed height when clicked */
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <!-- JavaScript code to dynamically generate image tags -->
+        <script>
+            // Define the number of images you want to display
+            const numberOfImages = 23; // Change this number according to your requirement
+
+            // Function to get a random number between min and max (inclusive)
+            function getRandomNumber(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            // Get a random image number
+            const randomImageNumber = getRandomNumber(1, numberOfImages);
+
+            // Create 'you' box element
+            const youBox = document.createElement('div');
+            youBox.classList.add('you-box');
+            youBox.innerHTML = '<p>You:</p>';
+
+            // Create image element inside 'you' box
+            const img = document.createElement('img');
+            img.src = `card${randomImageNumber}.png`;
+            img.alt = `Your Image`;
+            youBox.appendChild(img);
+
+            // Toggle height when '.you-box' is clicked
+            youBox.addEventListener('click', function() {
+                // Toggle clicked class on the you-box
+                this.classList.toggle('clicked');
+            });
+
+            // Append 'you' box to the body
+            document.body.appendChild(youBox);
+
+            // Loop to generate image tags for each card#.png
+            for (let i = 1; i <= numberOfImages; i++) {
+                // Create image element
+                const img = document.createElement('img');
+                // Set image source
+                img.src = `card${i}.png`;
+                // Set alt text for accessibility
+                img.alt = `Card ${i}`;
+                // Set data attribute to store the alternate image source
+                img.setAttribute('data-back-src', 'back.png');
+                // Attach click event listener to toggle images
+                img.addEventListener('click', function() {
+                    // Toggle between original and alternate image source
+                    const tempSrc = this.src;
+                    this.src = this.getAttribute('data-back-src');
+                    this.setAttribute('data-back-src', tempSrc);
+                });
+                // Append the image to the image-container div
+                document.querySelector('.image-container').appendChild(img);
+            }
+        </script>
+    </div>
+</body>
+</html>
