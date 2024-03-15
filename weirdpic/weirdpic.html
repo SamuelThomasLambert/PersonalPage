@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Viewer</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    .image-container {
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    #button-container {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background */
+    }
+    button {
+        padding: 10px 20px;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<div class="image-container" id="imageContainer"></div>
+<div id="button-container">
+    <button id="prevButton" onclick="showPrevious()">Previous</button>
+    <button id="nextButton" onclick="showNext()">Next</button>
+</div>
+
+<script>
+    var currentIndex = 1;
+    var totalImages = 5;
+    var prevButton = document.getElementById("prevButton");
+    var nextButton = document.getElementById("nextButton");
+    var imageContainer = document.getElementById("imageContainer");
+
+    function showPrevious() {
+        currentIndex--;
+        if (currentIndex === 1) {
+            prevButton.disabled = true;
+        }
+        if (currentIndex < totalImages) {
+            nextButton.disabled = false;
+        }
+        imageContainer.style.backgroundImage = 'url("weirdpic' + currentIndex + '.jpg")';
+    }
+
+    function showNext() {
+        currentIndex++;
+        if (currentIndex === totalImages) {
+            nextButton.disabled = true;
+        }
+        if (currentIndex > 1) {
+            prevButton.disabled = false;
+        }
+        imageContainer.style.backgroundImage = 'url("weirdpic' + currentIndex + '.jpg")';
+    }
+
+    // Initially disable the previous button as the initial image is pic 1
+    prevButton.disabled = true;
+    imageContainer.style.backgroundImage = 'url("weirdpic1.jpg")';
+</script>
+</body>
+</html>
