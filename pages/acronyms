@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="css/bootstrap.min.css"> 
+<link rel="stylesheet" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<title>Acronyms</title>
+<style>
+    h1 {
+        text-align: center;
+    }
+    .studentImg {
+            max-height: 50vh;
+            max-width: 100%;
+
+    }
+    .studentImgBox{
+            text-align: center;        
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Choose A or B</h1>
+</header>
+
+<main>
+<div class="container title">
+    <div class="row justify-content-around">
+        <div id="studentA" class="col-4 studentImgBox"><a href="https://app.Lumi.education/run/iK2Czz"><img src="images/studentA.png" alt="studentA" class="studentImg"></a></div>
+        <div id="studentB" class="col-4 studentImgBox"><a href="https://app.Lumi.education/run/XZ8O9w"><img src="images/studentB.png" alt="studentB" class="studentImg"></a></div>
+    </div>
+</div>
+</main>
+<footer>
+
+</footer>
+
+</body>
+
+</html>
