@@ -1,300 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
-  <link rel="stylesheet" type="text/css" href="../../css/style.css">
-  <title>Games</title>
-  <script src="../js/script.js" defer></script>
-<style type="text/css">
-    #result1 {
-font-size: 4em;
-margin: 50px 10px 10px;
-    }
-    #result2 {
-font-size: 2em;
-margin: 20px 10px 10px;
-    }
-
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/questions100.css">
+    <script src="../js/script.js" defer></script>
+<title>Vocab guesser</title>
+  <style>
+#Vocab {
+text-align: center;
+	font-size: 2em;
+/*  margin-top: 20%;*/
+  border: solid black 1px;
+  border-radius: 5px;
+  padding: 10px;
+}
+#Definition {
+	font-size: 1.5em;
+  text-align: center;
+}
+ 	</style>
 </head>
 
 <body>
-<!--
-  <header class="navigation"><a href="../../index.html"><span class="homeButton"></span></a> &gt; <a href="../games.html">Games</a> &gt; <a href="taboo.html">Taboo</a></header>
-  <main>
--->
-    <!-- Buttons to change row and column -->
-<div class="boxJustifyCenter"  onclick="changeRow()">
-    <!-- Result containers -->
-    <div>
-      <h1 id="result1"> Click here</h1>
-    </div>
-    <div>
-      <ul id="result2"></ul>
-    </div>
-</div>
-    <script>
-      // Data embedded directly in the HTML file
-      const data = `Result 1,Result 2 --> ,,
-Banana, Fruit, Yellow, Monkey
-Guitar, Music, String, Play
-Chocolate, Sweet, Candy, Black
-Winter, Season, Cold, Snow
-Christmas, December, Holiday, Santa
-Present, Birthday, Christmas, Gift
-Snow, Cold, Winter, White
-Laugh, Funny, Joke, Giggle
-Soap, Water, Clean, Wash
-Smell, Nose, Scent, Stink
-Football, Sport, Ball, Kick
-Raincoat, Wear, Protect, Wet
-Toothbrush, Teeth, Clean, Eat
-Birthday, Happy, Present, Cake
-School, Teacher, Learn, Study
-Potato, French fries, Mashed, Chips
-House, Home, Live, Place
-Computer, Internet, Keyboard, Mouse
-Shoe, Foot, Feet, Run
-Kick, Soccer (Football), Ball, Karate
-Coffee, Drink, Caffeine, Starbucks
-Taxi, Cab, Car, Yellow
-Milk, Cow, Cheese, White
-Punch, Fight, Boxing, Hit
-Pizza, Italian, Cheese, Bread
-Sushi, Food, Fish, Rice
-McDonalds, Restaurant, Fast, Food
-Camera, Picture, Shoot, Photo
-Haircut, Hair, Cut, Barber
-Police, Help, Crime,112
-Karaoke, Sing, Music, Song
-Radio, Music, Song, Listen
-Doctor, Sick, Hospital, Medicine
-Subway, Train, Station, Ticket
-Bicycle, Ride, Wheels, Bike
-Muscle, Workout, Exercise, Strong
-Ring, Wedding, Finger, Circle
-Secret, Tell, Keep, Nobody
-Spoon, Stir, Fork, Knife
-Actor/Actress, Movie, Television, Star
-Lazy, Work, Nothing, Sleep
-Bread, Toast, Breakfast, Butter
-Pencil, Write, Eraser, Paper
-Monster, Scary, Movie, Horror
-Dirt, Earth, Land, Mud
-Fly, Wings, Airplane, Bird
-Ice, Cold, Freeze, Water
-Ski, Winter, Mountain, Snow
-Dessert, Sweet, Cake, Dinner
-Guitar, Instrument, Play, Hands
-Mirror, See, Reflection, Wall
-Valentine, February 14, Red, Love
-Halloween, Monsters, October 31, Candy
-Ice cream, Cold, Cone, Flavor
-Teacher, School, Student, Learn
-Tokyo, Japan, City, Capital
-Umbrella, Rain, Wet, Cover
-Pau Gasol, Basketball, L.A. Lakers, Player
-Pillow, Sleep, Bed, Soft
-Apple, Fruit, Juice, Red
-Baseball, Ball, Bat, Sport
-Volleyball, Sport, Ball, Net
-Basketball, Sport, Net, Ball
-Shopping, Money, Buy, Store
-Dictionary, Words, Book, Alphabet
-Garbage, Trash, Waste, Dirty
-Tennis, Racket, Ball, Sport
-Weekend, Friday, Saturday, Sunday
-Surprise, Unexpected, Party, Excited
-Japan, Country, Live, Asia
-America, Country, United States, West
-Canada, Country, West, North
-Summer, Hot, Season, July
-Leo Messi, Football, Bar a, Player
-Jose Montilla, President, Generalitat, Polonia
-Pikachu, Pokemon, Mouse, Yellow
-Ichiro, Baseball, Seattle, Japan
-Doraemon, Cat, Blue, Robot
-Ic ria, High School, Here, Study
-Dinner, Eating, Evening, Food
-Dishwasher, Clean, Machine, Dishes
-Mother, Parent, Women, Mom (Mommy)
-Brother, Sibling, Boy, Related
-Sister, Sibling, Girl, Related
-Hospital, Doctor, Nurses, Sick
-Bank, Money, Deposit, Save
-Medicine, Sick/Ill, Doctor, Cure
-Menu, Order, Restaurant, Waiter
-George Bush, Ex-President, America, United States
-Church, Place, Silence, Pray
-Eraser, Pencil, Paper, Mistake
-Salad, Lettuce, Dressing, Tomato
-Good Morning, Good, Morning, Music
-Listen, MTV, Song, Chair
-Sit, Relax, Desk, Desk
-Hair, Head, Soft, Cut
-Toilet, Bathroom, Washroom, Pee
-Boat, Lake, Ocean, Float
-Sick/Ill, Doctor, Medicine, Hospital
-Children, Young, Kids, Family
-England, Country, English, Britain
-Eye, Face, See, look
-Monkey, Animal, Banana, Gorilla
-Nose, Face, Smell, Head
-Bird, Animal, Fly, Wings
-Tree, Plant, Leaves, grow
-Friend, Buddy, play, together
-Glasses, see, look, eye
-Elephant, Nose, Africa, Animal
-Lion, Animal, Fur, Africa
-Hamburger, McDonalds, Sandwich, Meat
-Bottle, Juice, Water, Drink
-Belt, Pants, Hold, up
-Battery, Energy, Power, Charge
-Shell, Beach, Snail, Oyster
-Sand, Beach, Rocks, Castle
-Seaweed, Sushi, Green, Ocean
-Asian, Japanese, Chinese, Korean
-Nail, Hammer, Sharp, Wood
-Beatles, Band, Rock & Roll, Liverpool
-Wheel, Circle, Round, Move
-Oil, Car, Energy, Black
-Fish, Sushi, Sashimi, Salmon
-Phone, Call, Talk, Speak
-Suit, Business, Man, Wear
-Pig, Pork, Meat, Cutlet
-Bowl, Soup, Spoon, Eat
-Fast, Speed, Quick, Run
-Flower, Plant, Grow, Rose
-Smoke, Fire, Cigarette, Cooking
-Night, Evening, Late, Sunset
-Cave, Dark, Bats, Hole
-Climb, Rock, Ladder, Mountain
-Smile, Happy, Face, Mouth
-Girlfriend, Girl, Love, Date
-Egg, Chicken, White, Round
-Job, Work, Money, Part-time
-Surfing, Water, Wave, Board
-Lemon, Fruit, Tea, Yellow
-Door, Open, Room, Knock
-Lock, Safe, Key, Steal
-Shower, Clean, Water, Spray
-Bath, Tub, Clean, Wash
-Email, Computer, Mail, Internet
-Garden, Grow, Plants, Seeds
-Towel, Dry, Water, Body
-Hotel, Bed, Sleep, Travel
-Rabbit, Jump, Animal, Ears
-China, Asia, Chinese, Food
-`;
+	<main>
+<h1>Vocab guessing game</h1>
+<ul>
+  <li>A word will appear below</li>
+  <li>Do not show your partner the word</li>
+  <li>Define the word to your partner</li>
+  <li>They will try to guess the word</li>
+  <li>there are some suggestions below the word, but you can use as many hints as you like</li>
+</ul>
+<p>Remember: </p>
+<ul>
+  <li>Person: (somebody) Who </li>
+  <li>Place: (somewhere) Where </li>
+  <li>Thing: (something) That </li>
+</ul>
+	<div class="rowCenter">
+    <div id="Vocab">Vocab guessing game</div>
+  </div>
+  <div class="rowCenter">
+    <div id="Definition">Click here</div>
+  </div>
+<script>
+  // Define the vocabWord and suggestions
+  let vocabWord = ['Airport','depart','baggage', 'cart', 'elevator','tour guide','sticky note','wait','eat','get married','bald', 'crowded','gloves', 'kitchen','Lazy','TV','creditcard','postoffice','banana','DJ','An art gallery','a camera','a passport'];
 
-      // Parse the embedded data
-      let rows = data.split('\n').map(row => row.split(','));
+  const suggestions = ['A place where','Verb, you do this when','something that you take', 'something that you use at','something you ride when', 'somebody who','something that','verb, something you do when','Verb, something you do when','verb, two people do this when they','adjective for a man who', 'Adjective for a place where','Things that ','the room where','Adjective for somebody who','something that','its something that','A place where','A fruit that is','somebody who','a place where','something that you use to','something that you need to'];
 
-      // Remove the first row
-      rows.shift();
-
-      // Remove rows that have empty values in the first column (category)
-      rows = rows.filter(row => row[0].trim() !== '');
-
-
-    let prevRandomRowIndex = -1;
-    let prevRandomColumnIndex = -1;
-
-    // Function to display the results
-    function displayResults() {
-        // Result 1: Display only the category
-        document.getElementById('result1').innerHTML = rows[randomRowIndex][0];
-
-        // Result 2: Display all data of the remaining columns (except A) as list items
-        const result2Container = document.getElementById('result2');
-        result2Container.innerHTML = ''; // Clear previous content
-
-        const allDataExceptA = rows[randomRowIndex].slice(1);
-        allDataExceptA.forEach(data => {
-            const listItem = document.createElement('li');
-            listItem.textContent = data.trim();
-            result2Container.appendChild(listItem);
-        });
+  function generateRandom() {
+    if (vocabWord.length === 0) {
+      document.getElementById('Vocab').innerText = "No more words!";
+      document.getElementById('Definition').innerText = "You've gone through all the words.";
+      return;
     }
 
-    // Function to handle 'Row' button click
-    function changeRow() {
-        randomRowIndex = getRandomRowIndex();
-        while (randomRowIndex === prevRandomRowIndex || randomRowIndex === 0) {
-            randomRowIndex = getRandomRowIndex();
-        }
-        prevRandomRowIndex = randomRowIndex;
+    const randomIndex = Math.floor(Math.random() * vocabWord.length);
+    const randomVocab = vocabWord[randomIndex];
+    const randomDefinition = suggestions[randomIndex];
 
-        randomColumnIndex = getRandomColumnIndex();
-        displayResults();
-    }
+    // Remove the word and its suggestion from the arrays
+    vocabWord.splice(randomIndex, 1);
+    suggestions.splice(randomIndex, 1);
 
-    // Function to handle 'Column' button click
-    function changeColumn() {
-        randomColumnIndex = getRandomColumnIndex();
-        while (randomColumnIndex === prevRandomColumnIndex) {
-            randomColumnIndex = getRandomColumnIndex();
-        }
-        prevRandomColumnIndex = randomColumnIndex;
+    document.getElementById('Vocab').innerText = randomVocab;
+    document.getElementById('Definition').innerText = randomDefinition;
+  }
 
-        displayResults();
-    }
-
-    // Function to handle file input change
-    function handleFileUpload(event) {
-        const fileInput = event.target;
-        const file = fileInput.files[0];
-
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                const content = e.target.result;
-                rows = content.split('\n').map(row => row.split(','));
-
-                // Remove the first row
-                rows.shift();
-
-                // Remove rows that have empty values in the first column (category)
-                rows = rows.filter(row => row[0].trim() !== '');
-
-                displayResults();
-            };
-
-            reader.readAsText(file);
-        }
-    }
-
-    // Function to get a random row index (excluding empty rows and the first row)
-    function getRandomRowIndex() {
-        const nonEmptyRows = rows.filter((row, index) => index !== 0 && row[0].trim() !== '');
-        return Math.floor(Math.random() * nonEmptyRows.length);
-    }
-
-    // Function to get a random column index (excluding column A and empty columns)
-    function getRandomColumnIndex() {
-        const nonEmptyColumns = rows[randomRowIndex].slice(1).filter(cell => cell.trim() !== '');
-        return Math.floor(Math.random() * nonEmptyColumns.length) + 1; // Adding 1 to account for excluding column A
-    }
-    // Function to download the template file
-    function downloadTemplate() {
-        const templateContent = "Result1,Result2 -->\n"; // Modify as per your template
-        const blob = new Blob([templateContent], { type: 'text/csv' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'template.csv';
-        link.click();
-    }
+  // Attach the click event listener to the document
+  document.addEventListener('click', generateRandom);
 </script>
 
-    </main>
-<!--    <footer class="navigation"> 
-        <a href="../../pages/contact.html">Contact</a>
-        <a href="../../pages/about.html">About</a>
-    </footer>
--->
+
+	</main>
+
 </body>
 
 </html>
